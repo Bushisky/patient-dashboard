@@ -48,6 +48,7 @@
 	width:150px;
 	text-decoration:none;
 	text-align:center;
+	vertical-align: middle;
 }
 .classname:hover{
 	background-color:#FFDD57;
@@ -105,6 +106,7 @@ background-color:#FF0000;
 {
     background-color:red;
 }
+
 </style>
 
 <script type="text/javascript">
@@ -164,6 +166,7 @@ if(!StringUtils.isBlank(jQuery("#height").val())) {
 	  return false;
 	  }
 }
+
 
 if(!StringUtils.isBlank(jQuery("#mua").val())) {
       if (!jQuery("#mua").val().match(intRegex)) {
@@ -252,7 +255,21 @@ jQuery("#bloodGroup").click(function() {
 		});
 }
 </script>
+<script type="text/JavaScript">
+function calculateBmi(){
+var weight = jQuery("#weight").val();
+var height = jQuery("#height").val();	
+var Bmi =  jQuery("#weight").val()/(jQuery("#height").val()*jQuery("#height").val());
 
+var b=Math.round(Bmi*10)/10;
+jQuery("#BMI").val(b);
+
+
+
+
+}
+//-->
+</script>
 <script type="text/JavaScript">
 function ShowForm () {
 
@@ -1049,9 +1066,14 @@ personal.style.display="inline";
 				</td>
 			</tr>
 			<tr>
-				<td>Height (cm)</td>
+				<td>Height (m)</td>
 				<td><input type="text" id="height" name="height" size="8"  maxlength="7">
 				</td>
+			</tr>
+			<tr>
+				<td>BMI</td>
+				<td><input type="text" id="BMI"  size="8"  maxlength="7"   onclick= "calculateBmi();"></td>
+				
 			</tr>
 			<tr>
 				<td>MUA Circumference(cm)</td>
@@ -2168,34 +2190,56 @@ personal.style.display="inline";
 								</c:when> 
 
 								<c:otherwise> 
-								<select id="familyIllnessHistory" name="familyIllnessHistory">
-									<option value=""></option>
-									<option value="Hypertension">Hypertension</option>
-									<option value="Tuberculosis">Tuberculosis</option>
-									<option value="Stroke">Stroke</option>
-									<option value="Sudden Death">Sudden Death</option>
-									<option value="Asthma">Asthma</option>
-									<option value="Diabetes">Diabetes</option>
-									<option value="Others">Others</option>
-									<option value="None">None</option>
-								</select>
-					
+								
+		<div>		              
+       <input type="checkbox" value="Hypertension"  id="familyIllnessHistory">
+        <label for="Hypertension">Hypertension</label>
+       <input type="checkbox" value="Tuberculosis"  id="familyIllnessHistory">
+        <label for="Tuberculosis">Tuberculosis</label>
+       <input type="checkbox" value="Stroke"  id="familyIllnessHistory">
+        <label for="Stroke">Stroke</label></div>
+        <div>		              
+       <input type="checkbox" value="Sudden Death"  id="familyIllnessHistory">
+        <label for="Sudden Death">Sudden Death</label>
+       <input type="checkbox" value="Asthma"  id="familyIllnessHistory">
+        <label for="Asthma">Asthma</label>
+       <input type="checkbox" value="Diabetes"  id="familyIllnessHistory">
+        <label for="Diabetes">Diabetes</label>		
+					 </div>	
+					 <div>					 
+       <input type="checkbox" value="Others"  id="familyIllnessHistory">
+        <label for="Others">Others</label>
+         	              
+       <input type="checkbox" value="None"  id="familyIllnessHistory">
+        <label for="None">None</label></td></div>						
+									
+									
+    
 								</c:otherwise> 
 								 </c:choose> 		
 							</c:when>
 								<c:otherwise> 
-								<select id="familyIllnessHistory" name="familyIllnessHistory">
-									<option value=""></option>
-									<option value="Hypertension">Hypertension</option>
-									<option value="Tuberculosis">Tuberculosis</option>
-									<option value="Stroke">Stroke</option>
-									<option value="Sudden Death">Sudden Death</option>
-									<option value="Asthma">Asthma</option>
-									<option value="Diabetes">Diabetes</option>
-									<option value="Others">Others</option>
-									<option value="None">None</option>
-								</select>
-					
+									<div>		              
+       <input type="checkbox" value="Hypertension"  id="familyIllnessHistory">
+        <label for="Hypertension">Hypertension</label>&nbsp;&nbsp;
+       <input type="checkbox" value="Tuberculosis"  id="familyIllnessHistory">
+        <label for="Tuberculosis">Tuberculosis</label>&nbsp;&nbsp;
+       <input type="checkbox" value="Stroke"  id="familyIllnessHistory">
+        <label for="Stroke">Stroke</label></div>
+        <div>		              
+       <input type="checkbox" value="Sudden Death"  id="familyIllnessHistory">
+        <label for="Sudden Death">Sudden Death</label>&nbsp;&nbsp;
+       <input type="checkbox" value="Asthma"  id="familyIllnessHistory">
+        <label for="Asthma">Asthma</label>&nbsp;&nbsp;
+       <input type="checkbox" value="Diabetes"  id="familyIllnessHistory">
+        <label for="Diabetes">Diabetes</label>&nbsp;&nbsp;			
+					 </div>	
+					 <div>					 
+       <input type="checkbox" value="Others"  id="familyIllnessHistory">
+        <label for="Others">Others</label>&nbsp;&nbsp;	
+         	              
+       <input type="checkbox" value="None"  id="familyIllnessHistory">
+        <label for="None">None</label></td></div>	
 								</c:otherwise> 
 							
 							</c:choose>

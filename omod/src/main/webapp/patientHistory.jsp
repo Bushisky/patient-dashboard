@@ -1642,17 +1642,27 @@ function reset()
 				<tr>
 					<td>&nbsp;&nbsp;&nbsp;&nbsp;Any family history of the following illness?</td>
 					<td>
-						<select id="familyIllnessHistory" name="familyIllnessHistory" >
-							<option value="${familyIllnessHistory}">${familyIllnessHistory}</option>
-							<option value="Hypertension">Hypertension</option>
-							<option value="Tuberculosis">Tuberculosis</option>
-							<option value="Stroke">Stroke</option>
-							<option value="Sudden Death">Sudden Death</option>
-							<option value="Asthma">Asthma</option>
-							<option value="Diabetes">Diabetes</option>
-							<option value="Others">Others</option>
-							<option value="None">None</option>
-						</select>
+							<div>		              
+       <input type="checkbox" value="Hypertension"  id="familyIllnessHistory">
+        <label for="Hypertension">Hypertension</label>&nbsp;&nbsp;
+       <input type="checkbox" value="Tuberculosis"  id="familyIllnessHistory">
+        <label for="Tuberculosis">Tuberculosis</label>&nbsp;&nbsp;
+       <input type="checkbox" value="Stroke"  id="familyIllnessHistory">
+        <label for="Stroke">Stroke</label></div>
+        <div>		              
+       <input type="checkbox" value="Sudden Death"  id="familyIllnessHistory">
+        <label for="Sudden Death">Sudden Death</label>&nbsp;&nbsp;
+       <input type="checkbox" value="Asthma"  id="familyIllnessHistory">
+        <label for="Asthma">Asthma</label>&nbsp;&nbsp;
+       <input type="checkbox" value="Diabetes"  id="familyIllnessHistory">
+        <label for="Diabetes">Diabetes</label>&nbsp;&nbsp;			
+					 </div>	
+<div>					 
+       <input type="checkbox" value="Others"  id="familyIllnessHistory">
+        <label for="Others">Others</label>&nbsp;&nbsp;	
+         	              
+       <input type="checkbox" value="None"  id="familyIllnessHistory">
+        <label for="None">None</label></td></div>	
 					</td>
 				</tr>
 				<tr><td>&nbsp;</td></tr>

@@ -304,7 +304,7 @@ public class TriageFormController {
 	public String formSummit(@RequestParam(value = "queueId", required = false) Integer queueId,
 			@RequestParam(value = "weight", required = false) BigDecimal weight,
 			@RequestParam(value = "height", required = false) BigDecimal height,
-			
+			@RequestParam(value = "BMI", required = false) BigDecimal BMI,
 			@RequestParam(value = "mua", required = false) BigDecimal mua,
 			@RequestParam(value = "chest", required = false) BigDecimal chest,
 			@RequestParam(value = "abdominal", required = false) BigDecimal abdominal,
@@ -387,7 +387,7 @@ public class TriageFormController {
 			@RequestParam(value = "familyHelp", required = false) String familyHelp,
 			@RequestParam(value = "incomeSource", required = false) String incomeSource,
 			@RequestParam(value = "otherHelp", required = false) String otherHelp,
-		
+			
 			HttpServletRequest request) throws Exception {
 		User user = Context.getAuthenticatedUser();
 		//PatientService ps = Context.getPatientService();
@@ -426,10 +426,13 @@ public class TriageFormController {
 		TriagePatientQueueLog triagePatientLog = queueService.saveTriagePatientQueueLog(queueLog);
 		queueService.deleteTriagePatientQueue(queue);
 		
+		
 		TriagePatientData tpd=new TriagePatientData();
 		tpd.setTriageLogId(triagePatientLog);
 		tpd.setWeight(weight);
 		tpd.setHeight(height);
+		
+		tpd.setBMI(BMI);
 		
 		tpd.setMua(mua);
 		tpd.setChest(chest);
