@@ -196,6 +196,17 @@ jQuery("#bloodGroup").click(function() {
 		});
 }
 </script>
+<script type="text/JavaScript">
+function calculateBmi(){
+var weight = jQuery("#weight").val();
+var height = jQuery("#height").val();	
+var Bmi =  jQuery("#weight").val()/((jQuery("#height").val()/100)*(jQuery("#height").val()/100));
+
+var b=Math.round(Bmi);
+jQuery("#BMI").val(b);
+}
+
+</script>
 <script type="text/javascript">
 	jQuery(document).ready(
 			function() {
@@ -1191,6 +1202,20 @@ return true;
 							value="${opdPatientQueue.triageDataId.height}" >
 						</td>
 					</tr>
+					<tr>
+					<c:choose>
+				<c:when test="${opdPatientQueue.triageDataId==null}">
+					<td>BMI</td>
+				<td><input type="text" id="BMI"  size="8"  maxlength="7"  onclick= "calculateBmi();" ></td>
+				</c:when>
+				<c:otherwise>
+					<td>BMI</td>
+				<td><input type="text" id="BMI"  size="8"  maxlength="7"   value="${opdPatientQueue.triageDataId.BMI}" ></td>
+				</c:otherwise>
+			</c:choose>
+				
+				
+			</tr>
 					<tr>
 						<td>MUA Circumference(cm)</td>
 						<td><input type="text" id="mua" name="mua" size=11"

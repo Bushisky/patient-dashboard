@@ -259,9 +259,9 @@ jQuery("#bloodGroup").click(function() {
 function calculateBmi(){
 var weight = jQuery("#weight").val();
 var height = jQuery("#height").val();	
-var Bmi =  jQuery("#weight").val()/(jQuery("#height").val()*jQuery("#height").val());
+var Bmi =  jQuery("#weight").val()/((jQuery("#height").val()/100)*(jQuery("#height").val()/100));
 
-var b=Math.round(Bmi*10)/10;
+var b=Math.round(Bmi);
 jQuery("#BMI").val(b);
 
 
@@ -1066,13 +1066,13 @@ personal.style.display="inline";
 				</td>
 			</tr>
 			<tr>
-				<td>Height (m)</td>
+				<td>Height (cm)</td>
 				<td><input type="text" id="height" name="height" size="8"  maxlength="7">
 				</td>
 			</tr>
 			<tr>
 				<td>BMI</td>
-				<td><input type="text" id="BMI"  size="8"  maxlength="7"   onclick= "calculateBmi();"></td>
+				<td><input type="text" id="BMI"  size="8"     onclick= "calculateBmi();"></td>
 				
 			</tr>
 			<tr>

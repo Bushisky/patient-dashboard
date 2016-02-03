@@ -21,6 +21,7 @@
 package org.openmrs.module.patientdashboard.web.controller;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -304,11 +305,10 @@ public class TriageFormController {
 	public String formSummit(@RequestParam(value = "queueId", required = false) Integer queueId,
 			@RequestParam(value = "weight", required = false) BigDecimal weight,
 			@RequestParam(value = "height", required = false) BigDecimal height,
-			@RequestParam(value = "BMI", required = false) BigDecimal BMI,
+			
 			@RequestParam(value = "mua", required = false) BigDecimal mua,
 			@RequestParam(value = "chest", required = false) BigDecimal chest,
 			@RequestParam(value = "abdominal", required = false) BigDecimal abdominal,
-			
 			@RequestParam(value = "temperature", required = false) BigDecimal temperature,
 			@RequestParam(value = "sbp", required = false) Integer sbp,
 			@RequestParam(value = "dbp", required = false) Integer dbp,
@@ -431,8 +431,11 @@ public class TriageFormController {
 		tpd.setTriageLogId(triagePatientLog);
 		tpd.setWeight(weight);
 		tpd.setHeight(height);
+		BigDecimal BMI=(weight.divide((height.multiply(height)),4,RoundingMode.HALF_UP)).scaleByPowerOfTen(4);
+		
 		
 		tpd.setBMI(BMI);
+		
 		
 		tpd.setMua(mua);
 		tpd.setChest(chest);
@@ -581,7 +584,7 @@ public class TriageFormController {
 					if(patientMedicalHistory1.getIllnessRecord()==null || patientMedicalHistory1.getIllnessRecord().equals("")){
 						patientMedicalHistory1.setIllnessRecord(existingIllnessRecord);
 					}
-					System.out.println("&&&&&&"+patientMedicalHistory1.getChronicIllness()+"########");
+					
 					if(patientMedicalHistory1.getChronicIllness()==null || patientMedicalHistory1.getChronicIllness().equals("")){
 						patientMedicalHistory1.setChronicIllness(chronicIllness);
 					}

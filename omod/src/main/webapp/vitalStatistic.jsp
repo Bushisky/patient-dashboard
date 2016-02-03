@@ -33,6 +33,10 @@
 		<td>${triagePatientData.height}</td>
 	</tr>
 	<tr>
+		<td><strong>BMI</strong></td>
+		<td>${triagePatientData.BMI}</td>
+	</tr>
+	<tr>
 		<td><strong>MUA Circumference(cm)</strong></td>
 		<td>${triagePatientData.mua}</td>
 	</tr>

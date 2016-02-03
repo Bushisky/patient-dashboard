@@ -21,6 +21,7 @@
 package org.openmrs.module.patientdashboard.web.controller;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -772,10 +773,18 @@ public class OPDEntryController {
 					BigDecimal weight = new BigDecimal(request.getParameter("weight"));
 					triagePatientData.setWeight(weight);
 				}
+				
 				if(null!=request.getParameter("height") && ""!=request.getParameter("height"))
 				{
 					BigDecimal height = new BigDecimal(request.getParameter("height"));
 					triagePatientData.setHeight(height);
+				}
+				if(request.getParameter("weight")!=null && request.getParameter("weight")!=""&& request.getParameter("height")!=null && request.getParameter("height")!="")
+				{ 
+					BigDecimal BMI =new BigDecimal(request.getParameter("weight")).divide(new BigDecimal(request.getParameter("height")).multiply(new BigDecimal(request.getParameter("height"))),4,RoundingMode.HALF_DOWN).scaleByPowerOfTen(4);
+					
+					triagePatientData.setBMI(BMI);
+					
 				}
 				if(null!=request.getParameter("temperature") && ""!=request.getParameter("temperature"))
 				{
@@ -1260,7 +1269,7 @@ public class OPDEntryController {
 										.getConceptId().toString() + ":"
 								+ "textFieldQues");
 						if (jkl !=null && !jkl.equals("")) {
-							//System.out.println("XXXXXX is printed");
+							
 							quest.setExamination(exm);
 							quest.setQuestionConcept(conceptAnswer
 									.getAnswerConcept());
@@ -1290,6 +1299,12 @@ public class OPDEntryController {
 			{
 				BigDecimal height = new BigDecimal(request.getParameter("height"));
 				triagePatientData.setHeight(height);
+			}
+			if(request.getParameter("weight")!=null && request.getParameter("weight")!=""&& request.getParameter("height")!=null && request.getParameter("height")!="")
+			{
+				BigDecimal BMI =new BigDecimal(request.getParameter("weight")).divide(new BigDecimal(request.getParameter("height")).multiply(new BigDecimal(request.getParameter("height"))),4,RoundingMode.HALF_DOWN).scaleByPowerOfTen(4);
+				triagePatientData.setBMI(BMI);
+				
 			}
 			if(null!=request.getParameter("temperature") && ""!=request.getParameter("temperature"))
 			{
