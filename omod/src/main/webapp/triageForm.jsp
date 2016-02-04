@@ -259,7 +259,7 @@ jQuery("#bloodGroup").click(function() {
 function calculateBmi(){
 var weight = jQuery("#weight").val();
 var height = jQuery("#height").val();	
-var Bmi =  jQuery("#weight").val()/((jQuery("#height").val()/100)*(jQuery("#height").val()/100));
+var Bmi =  jQuery("#weight").val()/((jQuery("#height").val())*(jQuery("#height").val()));
 
 var b=Math.round(Bmi);
 jQuery("#BMI").val(b);
