@@ -2156,16 +2156,16 @@ personal.style.display="inline";
 						<c:choose> 
 							<c:when test="${siblingStatus != null}"> 
 								<c:if test="${siblingStatus == 'Dead'}">
-								<input type="radio" id="siblingStatus" name="siblingStatus" disabled checked="checked" value="No">No &nbsp;&nbsp;&nbsp;
+								<input type="radio" id="siblingStatus" name="siblingStatus" disabled checked="checked" value="Dead">Dead &nbsp;&nbsp;&nbsp;
 								</c:if>
 								
 								<c:if test="${siblingStatus  != 'Dead'}">
-								<input type="radio" id="siblingStatus" name="siblingStatus" disabled value="No">No &nbsp;&nbsp;&nbsp;
+								<input type="radio" id="siblingStatus" name="siblingStatus" disabled value="Dead">Dead &nbsp;&nbsp;&nbsp;
 								</c:if>
 								
 							</c:when> 
 							<c:when test="${siblingStatus == null}"> 
-								<input type="radio" id="siblingStatus" name="siblingStatus" value="No">No &nbsp;&nbsp;&nbsp;
+								<input type="radio" id="siblingStatus" name="siblingStatus" value="Dead">Dead &nbsp;&nbsp;&nbsp;
 							</c:when> 	
 						</c:choose>				
 					</td>
