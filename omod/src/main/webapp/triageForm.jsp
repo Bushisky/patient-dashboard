@@ -257,13 +257,15 @@ jQuery("#bloodGroup").click(function() {
 </script>
 <script type="text/JavaScript">
 function calculateBmi(){
+	
+			
 var weight = jQuery("#weight").val();
 var height = jQuery("#height").val();	
-var Bmi =  jQuery("#weight").val()/((jQuery("#height").val())*(jQuery("#height").val()));
+var Bmi =  jQuery("#weight").val()/((jQuery("#height").val()/100)*(jQuery("#height").val()/100));
 
 var b=Math.round(Bmi);
 jQuery("#BMI").val(b);
-
+			
 
 
 
@@ -1067,12 +1069,12 @@ personal.style.display="inline";
 			</tr>
 			<tr>
 				<td>Height (cm)</td>
-				<td><input type="text" id="height" name="height" size="8"  maxlength="7">
+				<td><input type="text" id="height"  name="height" size="8"  maxlength="7" oninput="calculateBmi()">
 				</td>
 			</tr>
 			<tr>
 				<td>BMI</td>
-				<td><input type="text" id="BMI"  size="8"     onclick= "calculateBmi();"></td>
+				<td><input type="text" id="BMI"  size="8"     ></td>
 				
 			</tr>
 			<tr>
@@ -2135,7 +2137,7 @@ personal.style.display="inline";
 				<tr><td>&nbsp;</td></tr>
 				<tr>
 					<td>&nbsp;&nbsp;&nbsp;Status of siblings? &nbsp;&nbsp;&nbsp;</td>
-					<td>
+					<td>											 	
 						<c:choose> 
 							<c:when test="${siblingStatus != null}"> 
 								<c:if test="${siblingStatus  == 'Alive'}">
@@ -2150,23 +2152,22 @@ personal.style.display="inline";
 							<c:when test="${siblingStatus == null}"> 
 								<input type="radio" id="siblingStatus" name="siblingStatus" value="Alive">Alive &nbsp;&nbsp;&nbsp;
 							</c:when> 	
-						</c:choose>
-																	
-						 <c:choose> 
+						</c:choose>		
+						<c:choose> 
 							<c:when test="${siblingStatus != null}"> 
-								<c:if test="${siblingStatus  == 'Dead'}">
-								<input type="radio" id="siblingStatus" name="siblingStatus" disabled checked="checked" value="Dead">Dead &nbsp;&nbsp;&nbsp;
+								<c:if test="${siblingStatus == 'Dead'}">
+								<input type="radio" id="siblingStatus" name="siblingStatus" disabled checked="checked" value="No">No &nbsp;&nbsp;&nbsp;
 								</c:if>
 								
 								<c:if test="${siblingStatus  != 'Dead'}">
-								<input type="radio" id="siblingStatus" name="siblingStatus" disabled value="Dead">Dead &nbsp;&nbsp;&nbsp;
+								<input type="radio" id="siblingStatus" name="siblingStatus" disabled value="No">No &nbsp;&nbsp;&nbsp;
 								</c:if>
 								
 							</c:when> 
 							<c:when test="${siblingStatus == null}"> 
-								<input type="radio" id="siblingStatus" name="siblingStatus" value="Dead">Dead &nbsp;&nbsp;&nbsp;
+								<input type="radio" id="siblingStatus" name="siblingStatus" value="No">No &nbsp;&nbsp;&nbsp;
 							</c:when> 	
-						</c:choose>					
+						</c:choose>				
 					</td>
 				</tr>
 				<tr>

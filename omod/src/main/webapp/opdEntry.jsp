@@ -1191,6 +1191,9 @@ return true;
 						<td><br></td>
 					</tr>
 					<tr>
+					<c:choose>
+					<c:when test="${opdPatientQueue.triageDataId==null}">
+					<tr>
 						<td>Weight (Kg)</td>
 						<td><input type="text" id="weight" name="weight" size="11"
 							value="${opdPatientQueue.triageDataId.weight}" >
@@ -1198,21 +1201,53 @@ return true;
 					</tr>
 					<tr>
 						<td>Height (cm)</td>
-						<td><input type="text" id="height" name="height" size="11"
-							value="${opdPatientQueue.triageDataId.height}" >
+						<td><input type="text" id="height" name="height" size="11" 
+							value="${opdPatientQueue.triageDataId.height}" oninput="calculateBmi()">
+						</td>
+				    </tr>
+					<tr>
+						<td>BMI</td>
+				       <td><input type="text" id="BMI"  size="8"  maxlength="7"></td>
+					</tr>
+					</c:when>
+				<c:when test="${opdPatientQueue.triageDataId!=null && opdPatientQueue.triageDataId.height==null && opdPatientQueue.triageDataId.weight==null}">
+					<tr>
+						<td>Weight (Kg)</td>
+						<td><input type="text" id="weight" name="weight" size="11"
+							value="${opdPatientQueue.triageDataId.weight}" >
 						</td>
 					</tr>
 					<tr>
-					<c:choose>
-				<c:when test="${opdPatientQueue.triageDataId==null}">
+						<td>Height (cm)</td>
+						<td><input type="text" id="height" name="height" size="11" 
+							value="${opdPatientQueue.triageDataId.height}" oninput="calculateBmi()">
+						</td>
+				    </tr>
+					<tr>
 					<td>BMI</td>
-				<td><input type="text" id="BMI"  size="8"  maxlength="7"  onclick= "calculateBmi();" ></td>
+				<td><input type="text" id="BMI"  size="8"  maxlength="7"  ></td>
+				</tr>
 				</c:when>
 				<c:otherwise>
+				<tr>
+						<td>Weight (Kg)</td>
+						<td><input type="text" id="weight" name="weight" size="11"
+							value="${opdPatientQueue.triageDataId.weight}" >
+						</td>
+					</tr>
+					<tr>
+						<td>Height (cm)</td>
+						<td><input type="text" id="height" name="height" size="11" 
+							value="${opdPatientQueue.triageDataId.height}" oninput="calculateBmi()">
+						</td>
+				    </tr>
+					<tr>
 					<td>BMI</td>
 				<td><input type="text" id="BMI"  size="8"  maxlength="7"   value="${opdPatientQueue.triageDataId.BMI}" ></td>
+				</tr>
 				</c:otherwise>
-			</c:choose>
+				
+					</c:choose>
 				
 				
 			</tr>

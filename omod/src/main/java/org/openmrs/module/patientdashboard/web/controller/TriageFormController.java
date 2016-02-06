@@ -431,11 +431,13 @@ public class TriageFormController {
 		tpd.setTriageLogId(triagePatientLog);
 		tpd.setWeight(weight);
 		tpd.setHeight(height);
+		if(weight!=null && height!=null)
+		{
 		BigDecimal BMI=(weight.divide((height.multiply(height)),4,RoundingMode.HALF_UP)).scaleByPowerOfTen(4);
 		
 		
 		tpd.setBMI(BMI);
-		
+		}
 		
 		tpd.setMua(mua);
 		tpd.setChest(chest);
