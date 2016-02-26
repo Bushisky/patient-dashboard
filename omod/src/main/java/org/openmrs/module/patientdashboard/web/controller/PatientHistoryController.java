@@ -65,7 +65,7 @@ public class PatientHistoryController {
 		PatientMedicalHistory patientMedicalHistory = queueService.getPatientHistoryByPatientId(patientId);	
 		if(patientMedicalHistory==null)
 		{
-		   System.out.println("No medical history");	 return "module/patientdashboard/patientHistory";
+		   	 return "module/patientdashboard/patientHistory";
 		  // return "module/patientdashboard/patientHistory";
 		}
 		else
@@ -105,7 +105,7 @@ public class PatientHistoryController {
 		
 		if(patientDrugHistory==null)
 		{
-		   System.out.println("No medical history");	 return "module/patientdashboard/patientHistory";
+		  	 return "module/patientdashboard/patientHistory";
 		  // return "module/patientdashboard/patientHistory";
 		}
 		else
@@ -124,7 +124,7 @@ public class PatientHistoryController {
 		PatientFamilyHistory patientFamilyHistory = queueService.getPatientFamilyHistoryByPatientId(patientId);
 		if(patientFamilyHistory==null)
 		{
-		   System.out.println("No medical history");	 return "module/patientdashboard/patientHistory";
+		  	 return "module/patientdashboard/patientHistory";
 		  // return "module/patientdashboard/patientHistory";
 		}
 		else
@@ -135,7 +135,7 @@ public class PatientHistoryController {
 		model.addAttribute("motherStatus", patientFamilyHistory.getMotherStatus());
 		model.addAttribute("motherDeathCause", patientFamilyHistory.getMotherDeathCause());
 		model.addAttribute("motherDeathAge", patientFamilyHistory.getMotherDeathAge());
-		model.addAttribute("siblingStatus", patientFamilyHistory.getSiblingStatus());
+		model.addAttribute("siblingrecentDeath", patientFamilyHistory.getSiblingStatus());
 		model.addAttribute("siblingDeathCause", patientFamilyHistory.getSiblingDeathCause());
 		model.addAttribute("siblingDeathAge", patientFamilyHistory.getSiblingDeathAge());
 		model.addAttribute("familyIllnessHistory", patientFamilyHistory.getFamilyIllnessHistory());
@@ -144,7 +144,7 @@ public class PatientHistoryController {
 		PatientPersonalHistory patientPersonalHistory = queueService.getPatientPersonalHistoryByPatientId(patientId);
 		if(patientPersonalHistory==null)
 		{
-		   System.out.println("No medical history");	 return "module/patientdashboard/patientHistory";
+		  	 return "module/patientdashboard/patientHistory";
 		  // return "module/patientdashboard/patientHistory";
 		}
 		else
@@ -180,9 +180,9 @@ public class PatientHistoryController {
 			Model model)
 	{       PatientQueueService queueService = Context.getService(PatientQueueService.class);
 		PatientMedicalHistory patientMedicalHistory = queueService.getPatientHistoryByPatientId(patientId);	
-		System.out.println("****"+patientMedicalHistory+"*****");
+		
 		if(patientMedicalHistory==null)
-		{System.out.println("****"+"&&&&");
+		{
 			queueService.savePatientMedicalHistory(patientMedicalHistory);
 			return "module/patientdashboard/patientHistory";
 		}
@@ -320,7 +320,7 @@ public class PatientHistoryController {
 		String motherStatus = request.getParameter("motherStatus");
 		String motherDeathCause = request.getParameter("motherDeathCause");
 		String motherDeathAge = request.getParameter("motherDeathAge");
-		String siblingStatus = request.getParameter("siblingStatus");
+		String siblingrecentDeath = request.getParameter("siblingrecentDeath");
 		String siblingDeathCause = request.getParameter("siblingDeathCause");
 		String siblingDeathAge = request.getParameter("siblingDeathAge");
 		String familyIllnessHistory = request.getParameter("familyIllnessHistory");
@@ -330,7 +330,7 @@ public class PatientHistoryController {
 		patientFamilyHistory.setMotherStatus(motherStatus);
 		patientFamilyHistory.setMotherDeathCause(motherDeathCause);
 		patientFamilyHistory.setMotherDeathAge(motherDeathAge);
-		patientFamilyHistory.setSiblingStatus(siblingStatus);
+		patientFamilyHistory.setSiblingStatus(siblingrecentDeath);
 		patientFamilyHistory.setSiblingDeathCause(siblingDeathCause);
 		patientFamilyHistory.setSiblingDeathAge(siblingDeathAge);
 		patientFamilyHistory.setFamilyIllnessHistory(familyIllnessHistory);

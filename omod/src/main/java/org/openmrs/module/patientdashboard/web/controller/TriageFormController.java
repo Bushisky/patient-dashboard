@@ -218,7 +218,7 @@ public class TriageFormController {
 			model.addAttribute("motherStatus", patientFamilyHistory.getMotherStatus());
 			model.addAttribute("motherDeathCause", patientFamilyHistory.getMotherDeathCause());
 			model.addAttribute("motherDeathAge", patientFamilyHistory.getMotherDeathAge());
-			model.addAttribute("siblingStatus", patientFamilyHistory.getSiblingStatus());
+			model.addAttribute("siblingrecentDeath", patientFamilyHistory.getSiblingStatus());
 			model.addAttribute("siblingDeathCause", patientFamilyHistory.getSiblingDeathCause());
 			model.addAttribute("siblingDeathAge", patientFamilyHistory.getSiblingDeathAge());
 			model.addAttribute("familyIllnessHistory", patientFamilyHistory.getFamilyIllnessHistory());
@@ -368,7 +368,7 @@ public class TriageFormController {
 			@RequestParam(value = "motherStatus", required = false) String motherStatus,
 			@RequestParam(value = "motherDeathCause", required = false) String motherDeathCause,
 			@RequestParam(value = "motherDeathAge", required = false) String motherDeathAge,
-			@RequestParam(value = "siblingStatus", required = false) String siblingStatus,
+			@RequestParam(value = "siblingrecentDeath", required = false) String siblingrecentDeath,
 			@RequestParam(value = "siblingDeathCause", required = false) String siblingDeathCause,
 			@RequestParam(value = "siblingDeathAge", required = false) String siblingDeathAge,
 			@RequestParam(value = "familyIllnessHistory", required = false) String familyIllnessHistory,
@@ -536,7 +536,7 @@ public class TriageFormController {
 		pfh.setMotherStatus(motherStatus);
 		pfh.setMotherDeathCause(motherDeathCause);
 		pfh.setMotherDeathAge(motherDeathAge);
-		pfh.setSiblingStatus(siblingStatus);
+		pfh.setSiblingStatus(siblingrecentDeath);
 		pfh.setSiblingDeathCause(siblingDeathCause);
 		pfh.setSiblingDeathAge(siblingDeathAge);
 		pfh.setFamilyIllnessHistory(familyIllnessHistory);
@@ -713,7 +713,7 @@ public class TriageFormController {
 					patientFamilyHistory1.setMotherDeathAge(motherDeathAge);					
 				}
 				if(patientFamilyHistory1.getSiblingStatus()==null || patientFamilyHistory1.getSiblingStatus().equals("")){
-					patientFamilyHistory1.setSiblingStatus(siblingStatus);
+					patientFamilyHistory1.setSiblingStatus(siblingrecentDeath);
 				}
 				if(patientFamilyHistory1.getSiblingDeathCause()==null || patientFamilyHistory1.getSiblingDeathCause().equals("")){
 					patientFamilyHistory1.setSiblingDeathCause(siblingDeathCause);

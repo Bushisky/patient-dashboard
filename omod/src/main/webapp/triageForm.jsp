@@ -824,8 +824,8 @@ personal.style.display="inline";
 					}
 				};
 				
-				var siblingStatus = function (element) {
-					if(element.value == "Alive") {
+				var siblingrecentDeath = function (element) {
+					if(element.value == "No") {
 						$("input[name=siblingDeathCause]").attr("disabled", "disabled");
 						jQuery("#siblingDeathCause").val("");
 						$("input[name=siblingDeathAge]").attr("disabled", "disabled");	
@@ -1002,7 +1002,7 @@ personal.style.display="inline";
 	
 				$(":radio[name=fatherStatus]").click(function () {fatherStatus(this);	}).filter(":checked").each(function () { fatherStatus(this); });				
 				$(":radio[name=motherStatus]").click(function () {motherStatus(this);	}).filter(":checked").each(function () { motherStatus(this); });
-				$(":radio[name=siblingStatus]").click(function () {siblingStatus(this);	}).filter(":checked").each(function () { siblingStatus(this); });				
+				$(":radio[name=siblingrecentDeath]").click(function () {siblingrecentDeath(this);	}).filter(":checked").each(function () { siblingrecentDeath(this); });				
 
 				$(":radio[name=smoke]").click(function () {smoke(this);	}).filter(":checked").each(function () { smoke(this); });				
 				$(":radio[name=alcohol]").click(function () {alcohol(this);	}).filter(":checked").each(function () { alcohol(this); });				
@@ -2136,36 +2136,36 @@ personal.style.display="inline";
 				</tr>
 				<tr><td>&nbsp;</td></tr>
 				<tr>
-					<td>&nbsp;&nbsp;&nbsp;Status of siblings? &nbsp;&nbsp;&nbsp;</td>
+					<td>&nbsp;&nbsp;&nbsp;Was there any recent death of siblings? &nbsp;&nbsp;&nbsp;</td>
 					<td>											 	
 						<c:choose> 
-							<c:when test="${siblingStatus != null}"> 
-								<c:if test="${siblingStatus  == 'Alive'}">
-								<input type="radio" id="siblingStatus" name="siblingStatus" disabled checked="checked" value="Alive">Alive &nbsp;&nbsp;&nbsp;
+							<c:when test="${siblingrecentDeath != null}"> 
+								<c:if test="${siblingrecentDeath  == 'Yes'}">
+								<input type="radio" id="siblingrecentDeath" name="siblingrecentDeath" disabled checked="checked" value="Yes">Yes &nbsp;&nbsp;&nbsp;
 								</c:if>
 								
-								<c:if test="${siblingStatus  != 'Alive'}">
-								<input type="radio" id="siblingStatus" name="siblingStatus" disabled value="Alive">Alive &nbsp;&nbsp;&nbsp;
+								<c:if test="${siblingrecentDeath  != 'Yes'}">
+								<input type="radio" id="siblingrecentDeath" name="siblingrecentDeath" disabled value="Yes">Yes &nbsp;&nbsp;&nbsp;
 								</c:if>
 								
 							</c:when> 
-							<c:when test="${siblingStatus == null}"> 
-								<input type="radio" id="siblingStatus" name="siblingStatus" value="Alive">Alive &nbsp;&nbsp;&nbsp;
+							<c:when test="${siblingrecentDeath == null}"> 
+								<input type="radio" id="siblingrecentDeath" name="siblingrecentDeath" value="Yes">Yes &nbsp;&nbsp;&nbsp;
 							</c:when> 	
 						</c:choose>		
 						<c:choose> 
-							<c:when test="${siblingStatus != null}"> 
-								<c:if test="${siblingStatus == 'Dead'}">
-								<input type="radio" id="siblingStatus" name="siblingStatus" disabled checked="checked" value="Dead">Dead &nbsp;&nbsp;&nbsp;
+							<c:when test="${siblingrecentDeath != null}"> 
+								<c:if test="${siblingrecentDeath == 'No'}">
+								<input type="radio" id="siblingrecentDeath" name="siblingrecentDeath" disabled checked="checked" value="No">No &nbsp;&nbsp;&nbsp;
 								</c:if>
 								
-								<c:if test="${siblingStatus  != 'Dead'}">
-								<input type="radio" id="siblingStatus" name="siblingStatus" disabled value="Dead">Dead &nbsp;&nbsp;&nbsp;
+								<c:if test="${siblingrecentDeath  != 'No'}">
+								<input type="radio" id="siblingrecentDeath" name="siblingrecentDeath" disabled value="No">No &nbsp;&nbsp;&nbsp;
 								</c:if>
 								
 							</c:when> 
-							<c:when test="${siblingStatus == null}"> 
-								<input type="radio" id="siblingStatus" name="siblingStatus" value="Dead">Dead &nbsp;&nbsp;&nbsp;
+							<c:when test="${siblingrecentDeath == null}"> 
+								<input type="radio" id="siblingrecentDeath" name="siblingrecentDeath" value="No">No &nbsp;&nbsp;&nbsp;
 							</c:when> 	
 						</c:choose>				
 					</td>
