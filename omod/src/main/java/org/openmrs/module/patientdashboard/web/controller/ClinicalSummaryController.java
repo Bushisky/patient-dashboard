@@ -64,7 +64,23 @@ public class ClinicalSummaryController {
         String gpProcedure = administrationService.getGlobalProperty(PatientDashboardConstants.PROPERTY_POST_FOR_PROCEDURE);
         //	Sagar Bele Date:29-12-2012 Add field of visit outcome for Bangladesh requirement #552
         String gpVisitOutcome = administrationService.getGlobalProperty(PatientDashboardConstants.PROPERTY_VISIT_OUTCOME);
+         
+        //Signs
+     
+        String gpSigns = administrationService
+				.getGlobalProperty(PatientDashboardConstants.PROPERTY_SIGNS_CONCEPT);
         
+        //Differential Diagnosis
+     
+        String gpDifferentialDiagnosis = administrationService
+				.getGlobalProperty(PatientDashboardConstants.PROPERTY_DIFFERENTIAL_DIAGNOSIS);
+        //Working Diagnosis
+        
+        String gpWorkingDiagnosis = administrationService
+				.getGlobalProperty(PatientDashboardConstants.PROPERTY_WORKING_DIAGNOSIS);
+        //UnderLine Condition
+        String gpUnderlinedCondition = administrationService
+				.getGlobalProperty(PatientDashboardConstants.PROPERTY_UNDERLINED_CONDITION);
 		//String gpInternalReferral = administrationService.getGlobalProperty(PatientDashboardConstants.PROPERTY_INTERNAL_REFERRAL);
         
 		Concept conDiagnosis  = conceptService.getConcept(gpDiagnosis);
@@ -72,21 +88,44 @@ public class ClinicalSummaryController {
 		Concept conProcedure  = conceptService.getConcept(gpProcedure);
 //		Sagar Bele Date:29-12-2012 Add field of visit outcome for Bangladesh requirement #552
 		Concept conOutcome  = conceptService.getConcept(gpVisitOutcome);
-		
+	
+		//UnderLined Condition
+				Concept conUnderlinedCondition = conceptService.getConcept(gpUnderlinedCondition);
+		//Signs
+				Concept conSigns = conceptService.getConcept(gpSigns);
 		List<Encounter> encounters = dashboardService.getEncounter(patient, location, labOPDType, null);
-
+          //Differential Diagnosis
+		Concept conDifferentialDiagnosis = conceptService.getConcept(gpDifferentialDiagnosis);
+		 //Working Diagnosis
+		Concept conWorkingDiagnosis = conceptService.getConcept(gpWorkingDiagnosis);
 		//  condiagnosis  
 		// 
 		// command
 		String diagnosis = "";
 		String procedure="";
 		String outcome="";
+		//UnderLined Condition
+		String underlinedcondition = "";
+		//Signs
+		String signs = "";
+		//Differential Diagnosis
+		String differentialdiagnosis = "";
+		//Working diagnosis
+		String workingdiagnosis = "";
 		List<Clinical> clinicalSummaries = new ArrayList<Clinical>();
 		for( Encounter enc: encounters ){
 			diagnosis = "";
 			String note ="";
 			procedure="";
-			outcome="";			
+			outcome="";
+			//UnderLined Condition
+			underlinedcondition = "";
+			//signs
+			signs = "";
+			//Differential Diagnosis
+			differentialdiagnosis = "";
+			//Working diagnosis
+			workingdiagnosis = "";
 			Clinical clinical = new Clinical();
 			for( Obs obs : enc.getAllObs()){
 				//diagnosis
@@ -111,6 +150,55 @@ public class ClinicalSummaryController {
 						procedure +=obs.getValueText()+", ";
 					}
 				}
+				
+				//UnderLined Condition
+				if( obs.getConcept().getConceptId().equals(conUnderlinedCondition.getConceptId()) ){
+					
+					if(obs.getValueCoded() != null){
+						underlinedcondition +=obs.getValueCoded().getName()+", ";
+					}
+					if(StringUtils.isNotBlank(obs.getValueText())){
+						underlinedcondition += obs.getValueText();
+					}
+					
+			
+				}
+				//Signs
+				if( obs.getConcept().getConceptId().equals(conSigns.getConceptId()) ){
+					
+					if(obs.getValueCoded() != null){
+						signs +=obs.getValueCoded().getName()+", ";
+					}
+					if(StringUtils.isNotBlank(obs.getValueText())){
+						signs += obs.getValueText();
+					}
+					
+			
+				}
+				//Differential Diagnosis
+				if( obs.getConcept().getConceptId().equals(conDifferentialDiagnosis.getConceptId()) ){
+					
+					if(obs.getValueCoded() != null){
+						differentialdiagnosis +=obs.getValueCoded().getName()+", ";
+					}
+					if(StringUtils.isNotBlank(obs.getValueText())){
+						differentialdiagnosis += obs.getValueText();
+					}
+					
+			
+				}
+				//Working Diagnosis
+				if( obs.getConcept().getConceptId().equals(conWorkingDiagnosis.getConceptId()) ){
+					
+					if(obs.getValueCoded() != null){
+						workingdiagnosis +=obs.getValueCoded().getName()+", ";
+					}
+					if(StringUtils.isNotBlank(obs.getValueText())){
+						workingdiagnosis += obs.getValueText();
+					}
+					
+			
+				}
 //				Sagar Bele Date:29-12-2012 Add field of visit outcome for Bangladesh requirement #552
 				//visit outcome
 				if( obs.getConcept().getConceptId().equals(conOutcome.getConceptId()) ){
@@ -132,6 +220,27 @@ public class ClinicalSummaryController {
 			}
 			if( StringUtils.endsWith(procedure, ", ")){
 				procedure = StringUtils.removeEnd(procedure, ", ");
+			}
+			
+			//Underlined Condition
+			if( StringUtils.endsWith(underlinedcondition, ", ")){
+				underlinedcondition = StringUtils.removeEnd(underlinedcondition, ", ");
+			}
+			
+			//Signs
+			
+			if( StringUtils.endsWith(signs, ", ")){
+				signs= StringUtils.removeEnd(signs, ", ");
+			}
+             //Differential diagnosis
+			
+			if( StringUtils.endsWith(differentialdiagnosis, ", ")){
+				differentialdiagnosis= StringUtils.removeEnd(differentialdiagnosis, ", ");
+			}
+		     //Working diagnosis
+			
+			if( StringUtils.endsWith(workingdiagnosis, ", ")){
+						workingdiagnosis= StringUtils.removeEnd(workingdiagnosis, ", ");
 			}
 //			Sagar Bele Date:29-12-2012 Add field of visit outcome for Bangladesh requirement #552
 			if( StringUtils.endsWith(outcome, ", ")){
@@ -164,6 +273,14 @@ public class ClinicalSummaryController {
 			clinical.setDiagnosis(diagnosis);
 			clinical.setProcedures(procedure);
 			clinical.setVisitOutcomes(outcome);
+			//UnderLined Condition
+			clinical.setUnderlinedCondition(underlinedcondition);
+			//signs
+			clinical.setSigns(signs);
+			//differential diagnosis
+			clinical.setDifferentialdiagnosis(differentialdiagnosis);
+			//differential diagnosis
+			clinical.setWorkingdiagnosis(workingdiagnosis);
 			clinicalSummaries.add(clinical);
 			
 			// set value to command object

@@ -93,11 +93,51 @@
 	<tr>
 		<td></c:forEach>
 	</tr>
+<!--Signs -->
+ <tr>
+		<td><strong>Signs:</strong></td>
+		<c:forEach items="${signss}" var="sign">
+			</td>
+			<td>${sign.name}</td>
+	</tr>
+	<tr>
+		<td></c:forEach>
+	</tr>
 	<tr>
 		<td><strong>Provisional Diagnosis:</strong></td>
 		<c:forEach items="${diagnosiss}" var="diagnosis">
 			</td>
 			<td>${diagnosis.name}</td>
+	</tr>
+	<tr>
+		<td></c:forEach>
+	</tr>
+<!--DifferentialDiagnosis -->
+ <tr>
+		<td><strong>Differential Diagnosis:</strong></td>
+		<c:forEach items="${differentialss}" var="diffn">
+			</td>
+			<td>${diffn.name}</td>
+	</tr>
+	<tr>
+		<td></c:forEach>
+	</tr>	
+<!--WorkingDiagnosis -->
+ <tr>
+		<td><strong>Working Diagnosis:</strong></td>
+		<c:forEach items="${workingss}" var="wrkng">
+			</td>
+			<td>${wrkng.name}</td>
+	</tr>
+	<tr>
+		<td></c:forEach>
+	</tr>	
+<!-- Underline Conditions -->
+ <tr>
+		<td><strong>Underline Condition:</strong></td>
+		<c:forEach items="${underlinedConditionss}" var="underlinedCondition">
+			</td>
+			<td>${underlinedCondition.name}</td>
 	</tr>
 	<tr>
 		<td></c:forEach>

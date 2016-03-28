@@ -122,6 +122,45 @@ public class AutoCompleteController {
 		model.addAttribute("diagnosis", diagnosis);
 		return "/module/patientdashboard/autocomplete/autoCompleteProvisionalDianosis";
 	}
+	//Signs
+		@RequestMapping(value="/module/patientdashboard/autoCompleteSigns.htm", method=RequestMethod.GET)
+		public String signsCondition(@RequestParam(value="q",required=false) String name, Model model) {
+			List<Concept> signs = new ArrayList<Concept>();
+			PatientDashboardService dashboardService = Context.getService(PatientDashboardService.class);
+			signs = dashboardService.searchSigns(name);
+			model.addAttribute("signs",signs);
+			return "/module/patientdashboard/autocomplete/autoCompleteSigns";
+		}
+		
+	//Differential Diagnosis
+		@RequestMapping(value="/module/patientdashboard/autoCompleteDifferentialDiagnosis.htm", method=RequestMethod.GET)
+		public String differentialDiagnosis(@RequestParam(value="q",required=false) String name, Model model) {
+			List<Concept> differentialdiagnosis = new ArrayList<Concept>();
+			PatientDashboardService dashboardService = Context.getService(PatientDashboardService.class);
+			differentialdiagnosis = dashboardService.searchDifferentialDiagnosis(name);
+			model.addAttribute("differentialdiagnosis",differentialdiagnosis);
+			return "/module/patientdashboard/autocomplete/autoCompleteDifferentialDiagnosis";
+		}
+		
+	//Working Diagnosis
+		@RequestMapping(value="/module/patientdashboard/autoCompleteWorkingDiagnosis.htm", method=RequestMethod.GET)
+	   public String workingDiagnosis(@RequestParam(value="q",required=false) String name, Model model) {
+		   List<Concept> workingdiagnosis = new ArrayList<Concept>();
+		   PatientDashboardService dashboardService = Context.getService(PatientDashboardService.class);
+		   workingdiagnosis = dashboardService.searchWorkingDiagnosis(name);
+		   model.addAttribute("workingdiagnosis",workingdiagnosis);
+		   return "/module/patientdashboard/autocomplete/autoCompleteWorkingDiagnosis";
+	   }
+		
+	//UnderLined Condition
+	@RequestMapping(value="/module/patientdashboard/autoCompleteUnderLinedCondition.htm", method=RequestMethod.GET)
+	public String underLinedCondition(@RequestParam(value="q",required=false) String name, Model model) {
+		List<Concept> underlinedcondition = new ArrayList<Concept>();
+		PatientDashboardService dashboardService = Context.getService(PatientDashboardService.class);
+		underlinedcondition = dashboardService.searchUnderLinedCondition(name);
+		model.addAttribute("underlinedcondition", underlinedcondition);
+		return "/module/patientdashboard/autocomplete/autoCompleteUnderLinedCondition";
+	}
 	
 	@RequestMapping(value="/module/patientdashboard/comboboxProcedure.htm", method=RequestMethod.GET)
 	public String comboboxProcedure(@RequestParam(value="text",required=false) String text, Model model) {
@@ -157,6 +196,43 @@ public class AutoCompleteController {
 		diagnosis = dashboardService.searchDiagnosis(text);
 		model.addAttribute("diagnosis", diagnosis);
 		return "/module/patientdashboard/autocomplete/comboboxDianosis";
+	}
+	//Signs
+		@RequestMapping(value="/module/patientdashboard/comboboxSigns.htm", method=RequestMethod.GET)
+		public String comboboxSigns(@RequestParam(value="text",required=false) String text, Model model) {
+			List<Concept> signs = new ArrayList<Concept>();
+			PatientDashboardService dashboardService = Context.getService(PatientDashboardService.class);
+			signs = dashboardService.searchSigns(text);
+			model.addAttribute("signs", signs);
+			return "/module/patientdashboard/autocomplete/comboboxSigns";
+		}
+	//Differential Diagnosis
+		@RequestMapping(value="/module/patientdashboard/comboboxDifferentialDiagnosis.htm", method=RequestMethod.GET)
+		public String comboboxDifferential(@RequestParam(value="text",required=false) String text, Model model) {
+		  List<Concept> differentialdiagnosis = new ArrayList<Concept>();
+		  PatientDashboardService dashboardService = Context.getService(PatientDashboardService.class);
+		  differentialdiagnosis = dashboardService.searchDifferentialDiagnosis(text);
+		  model.addAttribute("differentialdiagnosis", differentialdiagnosis);
+		  return "/module/patientdashboard/autocomplete/comboboxDifferentialDiagnosis";
+		}
+		
+	//Differential Diagnosis
+		@RequestMapping(value="/module/patientdashboard/comboboxWorkingDiagnosis.htm", method=RequestMethod.GET)
+		public String comboboxWorking(@RequestParam(value="text",required=false) String text, Model model) {
+		  List<Concept> workingdiagnosis = new ArrayList<Concept>();
+		  PatientDashboardService dashboardService = Context.getService(PatientDashboardService.class);
+		  workingdiagnosis = dashboardService.searchWorkingDiagnosis(text);
+		  model.addAttribute("workingdiagnosis", workingdiagnosis);
+		  return "/module/patientdashboard/autocomplete/comboboxWorkingDiagnosis";
+				}
+	//Underlined Condition
+	@RequestMapping(value="/module/patientdashboard/comboboxUnderLinedCondition.htm", method=RequestMethod.GET)
+	public String comboboxUnderLinedCondition(@RequestParam(value="text",required=false) String text, Model model) {
+		List<Concept> underlinedcondition = new ArrayList<Concept>();
+		PatientDashboardService dashboardService = Context.getService(PatientDashboardService.class);
+		underlinedcondition = dashboardService.searchUnderLinedCondition(text);
+		model.addAttribute("underlinedcondition", underlinedcondition);
+		return "/module/patientdashboard/autocomplete/comboboxUnderLinedCondition";
 	}
 	
 	//ghanshyam 1-june-2013 New Requirement #1633 User must be able to send investigation orders from dashboard to billing
@@ -212,6 +288,14 @@ public class AutoCompleteController {
 			List<Concept> diagnosiss = new ArrayList<Concept>();
 			List<Concept> procedures = new ArrayList<Concept>();
 			List<Concept> investigations = new ArrayList<Concept>();
+			//UnderLined Condition
+			List<Concept> underlinedConditionss = new ArrayList<Concept>();
+			//signs
+			List<Concept> signss = new ArrayList<Concept>();
+			//Differential diagnosis
+			List<Concept>differentialss= new ArrayList<Concept>();
+			//Working diagnosis
+			List<Concept>workingss= new ArrayList<Concept>();
 			try {
 				if(encounter != null){
 					for( Obs obs : encounter.getAllObs()){
@@ -259,8 +343,37 @@ public class AutoCompleteController {
 							if (obs.getValueCoded().getConceptClass().getName().equals("Examination")) {
 								examinations.add(obs.getValueCoded());
 							}
-							if (obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")) {
+							if (obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")&&(obs.getConcept().isNamed("PROVISIONAL DIAGNOSIS"))||(obs.getConcept().isNamed("FINAL DIAGNOSIS"))) {
 								diagnosiss.add(obs.getValueCoded());
+								
+							}
+							//UnderLine Condition
+							if ((obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")) &&(obs.getConcept().isNamed("UNDERLINED CONDITION"))) {
+								
+								underlinedConditionss.add(obs.getValueCoded());
+								
+								
+							}
+							//Signs
+							if ((obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")) &&(obs.getConcept().isNamed("SIGNS"))) {
+								
+								signss.add(obs.getValueCoded());
+								
+								
+							}
+							//Differential Diagnosis
+							if ((obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")) &&(obs.getConcept().isNamed("DIFFERENTIAL DIAGNOSIS"))) {
+								
+								differentialss.add(obs.getValueCoded());
+								
+								
+							}
+							//Working Diagnosis
+							if ((obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")) &&(obs.getConcept().isNamed("WORKING DIAGNOSIS"))) {
+								
+								workingss.add(obs.getValueCoded());
+								
+								
 							}
 							if (obs.getValueCoded().getConceptClass().getName().equals("Procedure")) {
 								procedures.add(obs.getValueCoded());
@@ -347,6 +460,10 @@ public class AutoCompleteController {
 			model.addAttribute("symptoms", symptoms);
 			model.addAttribute("examinations", examinations);
 			model.addAttribute("diagnosiss", diagnosiss);
+			model.addAttribute("underlinedConditionss", underlinedConditionss);
+			model.addAttribute("signss", signss);
+			model.addAttribute("differentialss", differentialss);
+			model.addAttribute("workingss", workingss);
 			model.addAttribute("procedures", procedures);
 			model.addAttribute("investigations", investigations);
 			model.addAttribute("opdDrugOrders", opdDrugOrders);
@@ -582,6 +699,8 @@ public class AutoCompleteController {
 			List<Obs> diagnosiss = new ArrayList<Obs>();
 			List<Obs> procedures = new ArrayList<Obs>();
 			List<Obs> investigations = new ArrayList<Obs>();
+			//Underlined Conditions
+			List<Obs> underlinedConditionss = new ArrayList<Obs>();
 			try {
 				if(encounter != null){
 					for( Obs obs : encounter.getAllObs()){
@@ -632,6 +751,13 @@ public class AutoCompleteController {
 							if (obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")) {
 								diagnosiss.add(obs);
 							}
+							
+							//Underline Condition
+							
+							if (obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")) {
+								underlinedConditionss.add(obs);
+							}
+							
 							if (obs.getValueCoded().getConceptClass().getName().equals("Procedure")) {
 								procedures.add(obs);
 							}
@@ -718,6 +844,8 @@ public class AutoCompleteController {
 			model.addAttribute("symptoms", symptoms);
 			model.addAttribute("examinations", examinations);
 			model.addAttribute("diagnosiss", diagnosiss);
+			//UnderLineConditions
+			model.addAttribute("underlinedConditionss",underlinedConditionss);
 			model.addAttribute("procedures", procedures);
 			model.addAttribute("investigations", investigations);
 			model.addAttribute("opdDrugOrders", opdDrugOrders);

@@ -30,6 +30,14 @@ public class OPDEntryCommand {
 	private Integer[] selectedExaminationList;
 	//ghanshyam 1-june-2013 New Requirement #1633 User must be able to send investigation orders from dashboard to billing
 	private Integer[] selectedInvestigationList;
+	//signs
+	private Integer[] selectedSignsList;
+	//differential diagnosis
+	private Integer[] selectedDifferentialList;
+	//working diagnosis
+	private Integer[] selectedWorkingList;
+	//Underlined Condition
+	private Integer[] selectedUnderLinedList;
 	private Integer patientId;
 	private String internalReferral;
 	private String externalReferral;
@@ -136,6 +144,36 @@ public class OPDEntryCommand {
 	public void setSelectedInvestigationList(Integer[] selectedInvestigationList) {
 		this.selectedInvestigationList = selectedInvestigationList;
 	}
+	//signs
+	public Integer[] getSelectedSignsList() {
+		return selectedSignsList;
+	}
+	public void setSelectedSignsList(Integer[] selectedSignsList) {
+		this.selectedSignsList = selectedSignsList;
+	}
+	//differential diagnosis
+	public Integer[] getSelectedDifferentialList() {
+		return selectedDifferentialList;
+	}
+	public void setSelectedDifferentialList(Integer[] selectedDifferentialList) {
+		this.selectedDifferentialList = selectedDifferentialList;
+	}
+
+	//working diagnosis
+	public Integer[] getSelectedWorkingList() {
+		return selectedWorkingList;
+	}
+	public void setSelectedWorkingList(Integer[] selectedWorkingList) {
+		this.selectedWorkingList = selectedWorkingList;
+	}
+	//UnderLined Condition
+	
+	public Integer[] getSelectedUnderLinedList() {
+		return selectedUnderLinedList;
+	}
+	public void setSelectedUnderLinedList(Integer[] selectedUnderLinedList) {
+		this.selectedUnderLinedList = selectedUnderLinedList;
+	}
 	
 	public String getRadio_f() {
 		return radio_f;
@@ -158,7 +196,8 @@ public class OPDEntryCommand {
 				+ Arrays.toString(selectedProcedureList)
 				//ghanshyam 1-june-2013 New Requirement #1633 User must be able to send investigation orders from dashboard to billing
 				+ ", selectedInvestigationList="
-				+ Arrays.toString(selectedInvestigationList) + ", patientId="
+				+ Arrays.toString(selectedInvestigationList)   
+				
 				+ patientId + ", internalReferral=" + internalReferral
 				+ ", externalReferral=" + externalReferral + ", note=" + note + ", history=" + history 
 				+ ", admit=" + admit + ", outCome=" + outCome
@@ -189,5 +228,8 @@ public class OPDEntryCommand {
 	public void setOpdLogId(Integer opdLogId) {
 		this.opdLogId = opdLogId;
 	}
+
+
+
 
 }

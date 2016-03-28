@@ -133,6 +133,14 @@ public class PrintClinicalSummaryController {
 		List<Concept> diagnosiss = new ArrayList<Concept>();
 		List<Concept> procedures = new ArrayList<Concept>();
 		List<Concept> investigations = new ArrayList<Concept>();
+		//UnderLined Condition
+		List<Concept> underlinedConditionss = new ArrayList<Concept>();
+		//Signs
+		List<Concept> signss = new ArrayList<Concept>();
+		//Differential diagnosis
+		List<Concept> differentialss = new ArrayList<Concept>();
+		//Working Diagnosis0
+		List<Concept> workingss = new ArrayList<Concept>();
 		try {
 			if (encounter != null) {
 				for (Obs obs : encounter.getAllObs()) {
@@ -184,13 +192,42 @@ public class PrintClinicalSummaryController {
 							symptoms.add(obs.getValueCoded());
 						}
 						
-							if (obs.getValueCoded().getConceptClass().getName()
-									.equals("EXAMINATION")) {
-								examination.add(obs.getValueCoded());
-							}
-						if (obs.getValueCoded().getConceptClass().getName()
-								.equals("Diagnosis")) {
+						if (obs.getValueCoded().getConceptClass().getName().equals("Examination")) {
+							examination.add(obs.getValueCoded());
+						}
+						if (obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")&&(obs.getConcept().isNamed("PROVISIONAL DIAGNOSIS"))||(obs.getConcept().isNamed("FINAL DIAGNOSIS"))) {
 							diagnosiss.add(obs.getValueCoded());
+							
+						}
+						//UnderLine Condition
+					
+						
+						if ((obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")) &&(obs.getConcept().isNamed("UNDERLINED CONDITION"))) {
+							
+							underlinedConditionss.add(obs.getValueCoded());
+							
+							
+						}
+						//Signs
+						if ((obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")) &&(obs.getConcept().isNamed("SIGNS"))) {
+							
+							signss.add(obs.getValueCoded());
+							
+							
+						}
+						//Differential Diagnosis
+						if ((obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")) &&(obs.getConcept().isNamed("DIFFERENTIAL DIAGNOSIS"))) {
+							
+							differentialss.add(obs.getValueCoded());
+							
+							
+						}
+						//Working Diagnosis
+						if ((obs.getValueCoded().getConceptClass().getName().equals("Diagnosis")) &&(obs.getConcept().isNamed("WORKING DIAGNOSIS"))) {
+							
+							workingss.add(obs.getValueCoded());
+							
+							
 						}
 						if (obs.getValueCoded().getConceptClass().getName()
 								.equals("Procedure")) {
@@ -245,9 +282,14 @@ public class PrintClinicalSummaryController {
 		model.addAttribute("symptoms", symptoms);
 		model.addAttribute("examination", examination);
 		model.addAttribute("diagnosiss", diagnosiss);
+		model.addAttribute("underlinedConditionss", underlinedConditionss);
+		model.addAttribute("signss", signss);
+		model.addAttribute("differentialss", differentialss);
+		model.addAttribute("workingss", workingss);
 		model.addAttribute("procedures", procedures);
 		model.addAttribute("investigations", investigations);
 		model.addAttribute("opdDrugOrders", opdDrugOrders);
+		
 
 		return "module/patientdashboard/printClinicalSummary";
 	}

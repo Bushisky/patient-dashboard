@@ -66,6 +66,7 @@ DASHBOARD={
 		onChangeDianosis : function(id)
 		{
 			var text = jQuery("#"+id).val();
+			
 			if(text != null && text != ''){
 				if(SESSION.checkSession()){
 					var data = jQuery.ajax(
@@ -86,6 +87,7 @@ DASHBOARD={
 		onChangeProcedure : function(id)
 		{
 			var text = jQuery("#"+id).val();
+			
 			if(text != null && text != ''){
 				if(SESSION.checkSession()){
 					var data = jQuery.ajax(
@@ -103,7 +105,94 @@ DASHBOARD={
 				}
 			}
 		},
-		
+		//Underlined Condition
+		onChangeUnderlinedCondition : function(id)
+		{
+			var text = jQuery("#"+id).val();
+			
+			if(text != null && text != ''){
+				if(SESSION.checkSession()){
+					var data = jQuery.ajax(
+							{
+								type:"GET"
+								,url: "comboboxUnderLinedCondition.htm"
+								,data: ({text: text})	
+								,async: false
+								, cache : false
+							}).responseText;
+					if(data != undefined  && data != null && data != ''){
+						jQuery("#divAvailableUnderLinedConditionList").html("");
+						jQuery("#divAvailableUnderLinedConditionList").html(data);
+					}
+				}
+			}
+		},
+		//Signs
+		onChangeSigns : function(id)
+		{
+			var text = jQuery("#"+id).val();
+			
+			if(text != null && text != ''){
+				if(SESSION.checkSession()){
+					var data = jQuery.ajax(
+							{
+								type:"GET"
+								,url: "comboboxSigns.htm"
+								,data: ({text: text})	
+								,async: false
+								, cache : false
+							}).responseText;
+					if(data != undefined  && data != null && data != ''){
+						jQuery("#divAvailableSignsList").html("");
+						jQuery("#divAvailableSignsList").html(data);
+					}
+				}
+			}
+		},
+		//Differential Diagnosis
+		onChangeDifferentialDiagnosis : function(id)
+		{
+			var text = jQuery("#"+id).val();
+			
+			if(text != null && text != ''){
+				if(SESSION.checkSession()){
+					var data = jQuery.ajax(
+							{
+								type:"GET"
+								,url: "comboboxDifferentialDiagnosis.htm"
+								,data: ({text: text})	
+								,async: false
+								, cache : false
+							}).responseText;
+					if(data != undefined  && data != null && data != ''){
+						jQuery("#divAvailableDifferentialDiagnosisList").html("");
+						jQuery("#divAvailableDifferentialDiagnosisList").html(data);
+					}
+				}
+			}
+		},
+		//Working Diagnosis
+		onChangeWorkingDiagnosis : function(id)
+		{
+			var text = jQuery("#"+id).val();
+			
+			if(text != null && text != ''){
+				if(SESSION.checkSession()){
+					var data = jQuery.ajax(
+							{
+								type:"GET"
+								,url: "comboboxWorkingDiagnosis.htm"
+								,data: ({text: text})	
+								,async: false
+								, cache : false
+							}).responseText;
+					if(data != undefined  && data != null && data != ''){
+						jQuery("#divAvailableWorkingDiagnosisList").html("");
+						jQuery("#divAvailableWorkingDiagnosisList").html(data);
+					}
+				}
+			}
+		},
 		//ghanshyam 1-june-2013 New Requirement #1633 User must be able to send investigation orders from dashboard to billing
 		onChangeInvestigation : function(id)
 		{
@@ -141,6 +230,23 @@ DASHBOARD={
 				}); 
 				//ghanshyam 1-june-2013 New Requirement #1633 User must be able to send investigation orders from dashboard to billing
 				jQuery('#selectedInvestigationList option').each(function(i) {  
+					 jQuery(this).attr("selected", "selected");  
+				});
+				
+				//Underlined Condition
+				jQuery('#selectedUnderLinedList option').each(function(i) {  
+					 jQuery(this).attr("selected", "selected");  
+				}); 
+				//Signs
+				jQuery('#selectedSignsList option').each(function(i) {  
+					 jQuery(this).attr("selected", "selected");  
+				}); 
+				//Differential Diagnosis
+				jQuery('#selectedDifferentialList option').each(function(i) {  
+					 jQuery(this).attr("selected", "selected");  
+				}); 
+				//Working Diagnosis
+				jQuery('#selectedWorkingList option').each(function(i) {  
 					 jQuery(this).attr("selected", "selected");  
 				}); 
 				//jQuery("#opdEntryForm").submit();
@@ -196,6 +302,19 @@ DASHBOARD={
 				var referralId = jQuery("#referralId").val();
 				url = "showAllDiagnosis.htm?patientId="+patientId+"&opdId="+opdId+"&queueId="+queueId+"&referralId="+referralId+"&keepThis=false&TB_iframe=true&height=600&width=1000";
 				tb_show("All diagnosis",url,false);
+			}
+		},
+		//Underlined condition
+		
+		showAllUnderlinedCondition : function()
+		{
+			if(SESSION.checkSession()){
+				var patientId = jQuery("#patientId").val();
+				var opdId = jQuery("#opdId").val();
+				var queueId = jQuery("#queueId").val();
+				var referralId = jQuery("#referralId").val();
+				url = "showAllUnderlinedCondition.htm?patientId="+patientId+"&opdId="+opdId+"&queueId="+queueId+"&referralId="+referralId+"&keepThis=false&TB_iframe=true&height=600&width=1000";
+				tb_show("All Underlined condition",url,false);
 			}
 		},
 		onChangeDiagnosis : function(container, id, name)
@@ -384,6 +503,158 @@ DASHBOARD={
 					}
 				}
 			}
+		//Underlined Condition
+		if(container == 'underlinedcondition'){
+			var exists = false;
+			
+			jQuery('#selectedUnderLinedList option').each(function(){
+			    if (this.value == id) {
+			        exists = true;
+			        return false;
+			        
+			    }
+			});
+			if(exists){
+				alert('The underlined condition  has already been selected');
+				return false;
+			}
+			exists = false;
+			jQuery('#availableUnderLinedConditionList option').each(function(){
+			    if (this.value == id) {
+			        exists = true;
+			        return false;
+			    }
+			});
+			jQuery("#underlinedcondition").val("");
+			if(exists){ 
+				jQuery("#availableUnderLinedConditionList option[value=" +id+ "]").appendTo("#selectedUnderLinedList");
+				jQuery("#availableUnderLinedConditionList option[value=" +id+ "]").remove();
+			}else{ 
+				jQuery('#selectedUnderLinedList').append('<option value="' + id + '">' + name + '</option>');
+				if(confirm("Do you want to add this diagnosis to the list of underlined condition for this OPD?"))
+				{
+					jQuery.ajax({
+						  type: 'POST',
+						  url: 'addConceptToWard.htm',
+						  data: {opdId: jQuery("#"+container).attr("title"), conceptId: id, typeConcept: 6}
+						});
+				}
+			}
+		}
+		//Signs
+		if(container == 'signs'){
+			var exists = false;
+			
+			jQuery('#selectedSignsList option').each(function(){
+			    if (this.value == id) {
+			        exists = true;
+			        return false;
+			        
+			    }
+			});
+			if(exists){
+				alert('The sign  has already been selected');
+				return false;
+			}
+			exists = false;
+			jQuery('#availableSignsList option').each(function(){
+			    if (this.value == id) {
+			        exists = true;
+			        return false;
+			    }
+			});
+			jQuery("#signs").val("");
+			if(exists){
+				jQuery("#availableSignsList option[value=" +id+ "]").appendTo("#selectedSignsList");
+				jQuery("#availableSignsList option[value=" +id+ "]").remove();
+			}else{  
+				jQuery('#selectedSignsList').append('<option value="' + id + '">' + name + '</option>');
+				if(confirm("Do you want to add this diagnosis to the list of signs for this OPD?"))
+				{
+					jQuery.ajax({
+						  type: 'POST',
+						  url: 'addConceptToWard.htm',
+						  data: {opdId: jQuery("#"+container).attr("title"), conceptId: id, typeConcept: 7}
+						});
+				}
+			}
+		}
+		//Differential Diagnosis
+		if(container == 'differentialdiagnosis'){
+			var exists = false;
+			
+			jQuery('#selectedDifferentialList option').each(function(){
+			    if (this.value == id) {
+			        exists = true;
+			        return false;
+			       
+			    }
+			});
+			if(exists){
+				alert('The differential diagnosis  has already been selected');
+				return false;
+			}
+			exists = false;
+			jQuery('#availableDifferentialDiagnosisList option').each(function(){
+			    if (this.value == id) {
+			        exists = true;
+			        return false;
+			    }
+			});
+			jQuery("#differentialdiagnosis").val("");
+			if(exists){ 
+				jQuery("#availableDifferentialDiagnosisList option[value=" +id+ "]").appendTo("#selectedDifferentialList");
+				jQuery("#availableDifferentialDiagnosisList option[value=" +id+ "]").remove();
+			}else{ 
+				jQuery('#selectedDifferentialList').append('<option value="' + id + '">' + name + '</option>');
+				if(confirm("Do you want to add this diagnosis to the list of differential diagnosis for this OPD?"))
+				{
+					jQuery.ajax({
+						  type: 'POST',
+						  url: 'addConceptToWard.htm',
+						  data: {opdId: jQuery("#"+container).attr("title"), conceptId: id, typeConcept: 8}
+						});
+				}
+			}
+		}
+		//Working Diagnosis
+		if(container == 'workingdiagnosis'){
+			var exists = false;
+			
+			jQuery('#selectedWorkingList option').each(function(){
+			    if (this.value == id) {
+			        exists = true;
+			        return false;
+			       
+			    }
+			});
+			if(exists){
+				alert('The working diagnosis  has already been selected');
+				return false;
+			}
+			exists = false;
+			jQuery('#availableWorkingDiagnosisList option').each(function(){
+			    if (this.value == id) {
+			        exists = true;
+			        return false;
+			    }
+			});
+			jQuery("#workingdiagnosis").val("");
+			if(exists){ 
+				jQuery("#availableWorkingDiagnosisList option[value=" +id+ "]").appendTo("#selectedWorkingList");
+				jQuery("#availableWorkingDiagnosisList option[value=" +id+ "]").remove();
+			}else{ 
+				jQuery('#selectedWorkingList').append('<option value="' + id + '">' + name + '</option>');
+				if(confirm("Do you want to add this diagnosis to the list of working diagnosis for this OPD?"))
+				{
+					jQuery.ajax({
+						  type: 'POST',
+						  url: 'addConceptToWard.htm',
+						  data: {opdId: jQuery("#"+container).attr("title"), conceptId: id, typeConcept: 9}
+						});
+				}
+			}
+		}
 		},
 		
 		onChangeRadio : function(thiz)
@@ -445,6 +716,11 @@ ADMITTED = {
 			jQuery('#selectedProcedureList option').each(function(i) {  
 				 jQuery(this).attr("selected", "selected");  
 			}); 
+			
+			//Underlined Condition
+			jQuery('#selectedUnderLinedList option').each(function(i) {  
+				 jQuery(this).attr("selected", "selected");  
+			});
 			jQuery("#finalResultForm").submit();
 		}
 };

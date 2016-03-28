@@ -21,6 +21,7 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <openmrs:require privilege="View PatientDashboard"
 	otherwise="/login.htm" redirect="index.htm" />
+
 <style type="text/css">
 .drug-order {
 	width: 100%;
@@ -208,8 +209,197 @@ jQuery("#BMI").val(b);
 
 </script>
 <script type="text/javascript">
-	jQuery(document).ready(
+	jQuery(document).ready( 
 			function() {
+			jQuery("#abc").hide();
+			jQuery("#divAvailableSymptomList").hide();
+			jQuery("#symp").hide();jQuery("#selectedSymptomList").hide();
+			jQuery("#but").hide();
+			jQuery("#divAvailableExaminationList").hide();
+			 jQuery("#selectedExaminationList").hide();
+			 jQuery("#exm").hide();
+			 jQuery("#buttns").hide();
+			 
+			 jQuery("#divAvailableSignsList").hide();
+			 jQuery("#selectedSignsList").hide();
+		    	jQuery("#sn").hide();
+		    	jQuery("#sgn").hide();
+		    	
+		    	jQuery("#divAvailableDiagnosisList").hide();
+		    	jQuery("#selectedDiagnosisList").hide();
+		    	jQuery("#dgn").hide();
+		    	jQuery("#diag").hide();
+		    	
+		    	jQuery("#divAvailableProcedureList").hide();
+		    	jQuery("#pop").hide();
+				jQuery("#procedre").hide();
+				jQuery("#drgs").hide();
+		    	jQuery("#drug").hide();
+		    	jQuery("#other").hide();
+				jQuery("#othrins").hide();
+		    	jQuery("#dd").hide();
+		    	jQuery("#pro").hide();
+		    	jQuery("#headerValue").hide();
+		    	jQuery("#add").hide();
+		    	jQuery("#pop").hide();
+		    	jQuery("#pp").hide();
+		    	jQuery("#note").hide();
+		    	jQuery("#selectedProcedureList").hide();
+		    	jQuery("#btns").hide();
+		    	 jQuery("#diff").hide();
+		    	jQuery("#divAvailableDifferentialDiagnosisList").hide();
+		    	jQuery("#selectedDifferentialList").hide();
+		    	jQuery("#dfnbut").hide();
+		    	jQuery("#wrknd").hide();
+		    	jQuery("#divAvailableWorkingDiagnosisList").hide();
+		    	jQuery("#wrkngdig").hide();
+		    	jQuery("#selectedWorkingList").hide();
+		    	jQuery("#interref").hide();
+				jQuery("#externalref").hide();
+				jQuery("#outcome").hide();
+		    	jQuery("#divAvailableUnderLinedConditionList").hide();
+		    	jQuery("#under").hide();
+		    	jQuery("#selectedUnderLinedList").hide();
+		    	jQuery("#undr").hide();
+		    	jQuery("#divAvailableInvestigationList").hide();
+		    	jQuery("#investing").hide();
+				jQuery("#invest").hide();
+		    	jQuery("#selectedInvestigationList").hide();
+		    	jQuery("#current").hide();
+		    	
+		    	
+		    	jQuery("#abcd").hide();
+		    	jQuery("#xyz").hide();
+		    	jQuery("#ex").hide();
+				jQuery("#histry").click(function()
+						{
+					     jQuery("#abc").toggle();
+					    
+						});
+				jQuery("#syptom").click(function(){
+					jQuery("#xyz").toggle();
+					
+				jQuery("#divAvailableSymptomList").toggle();
+				jQuery("#symp").toggle();
+				jQuery("#selectedSymptomList").toggle();
+				jQuery("#but").toggle();
+				});
+			    
+				jQuery("#exmntion").click(function(){ jQuery("#ex").toggle();jQuery("#divAvailableExaminationList").toggle();
+			    jQuery("#selectedExaminationList").toggle();
+			    jQuery("#exm").toggle();
+			    jQuery("#buttns").toggle();
+			    
+				});
+			    
+			    
+			    
+			    jQuery("#sins").click(function(){ jQuery("#sgn").toggle();
+			    	jQuery("#divAvailableSignsList").toggle();
+			    	jQuery("#selectedSignsList").toggle();
+			    	jQuery("#sn").toggle();
+			    	
+			    });
+			    jQuery("#dig").click(function(){jQuery("#diag").toggle();
+			    	jQuery("#divAvailableDiagnosisList").toggle();
+			    	jQuery("#selectedDiagnosisList").toggle();
+			    	jQuery("#dgn").toggle();
+			    });
+			    jQuery("#treatment").click(function()
+			    		{
+			    	jQuery("#procedre").toggle();
+			    	jQuery("#drgs").toggle();
+			    	
+			    	jQuery("#othrins").toggle();
+					
+			    	
+			    	
+			    	
+			    });
+			    jQuery("#drgs").click(function()
+			    		{
+			    	 jQuery("#drug").toggle();
+			    	jQuery("#dd").toggle();
+			    	jQuery("#headerValue").toggle();
+			    	jQuery("#add").toggle();
+			    	
+			    });
+			    jQuery("#procedre").click(function()
+			    		{
+			    	
+			    	jQuery("#divAvailableProcedureList").toggle();
+			    	jQuery("#pop").toggle();
+			    	jQuery("#pp").toggle();
+			    	jQuery("#selectedProcedureList").toggle();
+			    	jQuery("#btns").toggle();
+			    		});
+						
+			    
+			    jQuery("#othrins").click(function()
+			    		{
+							jQuery("#other").toggle();
+			    	jQuery("#note").toggle();
+			    	
+			    	
+			    });
+			    jQuery("#difrntial").click(function()
+			    		{
+							 jQuery("#diff").toggle();
+			    	
+			    	jQuery("#divAvailableDifferentialDiagnosisList").toggle();
+			    	jQuery("#selectedDifferentialList").toggle();
+			    	jQuery("#dfnbut").toggle();
+			    	
+			    });
+			    jQuery("#wrking").click(function()
+			    		{
+			    	jQuery("#wrknd").toggle();
+			    	jQuery("#divAvailableWorkingDiagnosisList").toggle();
+			    	jQuery("#wrkngdig").toggle();
+			    	jQuery("#selectedWorkingList").toggle();
+			    		});
+			    
+			    jQuery("#underlned").click(function()
+			    		{
+			    	jQuery("#undr").toggle();
+			    	jQuery("#divAvailableUnderLinedConditionList").toggle();
+			    	jQuery("#under").toggle();
+			    	jQuery("#selectedUnderLinedList").toggle();
+			    		});
+			    
+			    jQuery("#investgtion").click(function()
+			    		{
+			    	jQuery("#invest").toggle();
+			    	jQuery("#divAvailableInvestigationList").toggle();
+			    	jQuery("#investing").toggle();
+			    	jQuery("#selectedInvestigationList").toggle();
+			    		});
+			    
+			     jQuery("#triageDiv").click(function()
+			    		{
+			    	jQuery("#current").toggle();
+			    	
+			    	
+			    		});
+			     
+			     jQuery("#intrnal").click(function()
+			    		{jQuery("#interref").toggle();
+			    	
+			    	
+			    		});
+			    
+			     jQuery("#extrnal").click(function()
+				    		{ jQuery("#externalref").toggle();
+				    	
+				    	
+				    		});
+			     jQuery("#outcum").click(function()
+				    		{
+						jQuery("#outcome").toggle();
+				    	jQuery("#abcd").toggle();
+				    	
+				    		});  
+			    
 				var href = window.top.location.href;
 				
 				if (StringUtils.isBlank(jQuery("#bloodGroup").val())) {
@@ -334,8 +524,36 @@ jQuery("#BMI").val(b);
 		}		
 			
 }
+//signs
+function loadSelectedSignsList()
+{
+	if(${signsIdSet}.length > 0)
+	{
+	var signIdToBeAdded = ('${signsIdSet}');
+	
+	var signNameToBeAdded = ('${signedNameSet}');
+	
+	signIdToBeAdded = signIdToBeAdded.substr(1);
 
+	signIdToBeAdded = signIdToBeAdded.substring(0, signIdToBeAdded.length - 1);	
+	
+	signNameToBeAdded = signNameToBeAdded.substr(1);
 
+	signNameToBeAdded = signNameToBeAdded.substring(0, signNameToBeAdded.length - 1);	
+	
+	var sgnIdArr = signIdToBeAdded.split(",");
+	
+	var sgnNameArr = signNameToBeAdded.split(",");
+	
+	var sgndl = $("#selectedSignsList");
+		for (var i = 0; i < sgnIdArr.length; i++)
+		{
+			sgnNameArr[i] = sgnNameArr[i].replaceAll("@", ",");
+		     sgndl.append("<option value='" +sgnIdArr[i]+ "'>" +  sgnNameArr[i] + "</option>");
+	   	}
+   	}
+}
+//diagnosis
 function loadSelectedDiagnosisList()
 {
 	if(${diagnosisIdSet}.length > 0)
@@ -357,11 +575,84 @@ function loadSelectedDiagnosisList()
 	   	}
    	}
 }
-
+//Differential diagnosis
+function loadSelectedDifferentialDiagnosisList()
+{
+	if(${diagnosisIdSet}.length > 0)
+	{
+	var diffIdToBeAdded = ('${differentialIdSet}');
+	
+	var diffNameToBeAdded = ('${differentialedNameSet}');
+	diffIdToBeAdded = diffIdToBeAdded.substr(1);
+	diffIdToBeAdded =diffIdToBeAdded.substring(0, diffIdToBeAdded.length - 1);	
+	diffNameToBeAdded = diffNameToBeAdded.substr(1);
+	diffNameToBeAdded = diffNameToBeAdded.substring(0, diffNameToBeAdded.length - 1);	
+	var diffIdArr = diffIdToBeAdded.split(",");
+	var diffNameArr = diffNameToBeAdded.split(",");
+	
+	var diffdl = $("#selectedDifferentialList");
+		for (var i = 0; i < diffIdArr.length; i++)
+		{
+			diffNameArr[i] = diffNameArr[i].replaceAll("@", ",");
+		    diffdl.append("<option value='" + diffIdArr[i]+ "'>" +  diffNameArr[i] + "</option>");
+	   	}
+   	}
+}
+//Working diagnosis
+function loadSelectedWorkingDiagnosisList()
+{
+	if(${workingIdSet}.length > 0)
+	{
+	var wrkngIdToBeAdded = ('${workingIdSet}');
+	var wrkngNameToBeAdded = ('${workinedNameSet}');
+	wrkngIdToBeAdded = wrkngIdToBeAdded.substr(1);
+	wrkngIdToBeAdded =wrkngIdToBeAdded.substring(0, wrkngIdToBeAdded.length - 1);	
+	wrkngNameToBeAdded = wrkngNameToBeAdded.substr(1);
+	wrkngNameToBeAdded = wrkngNameToBeAdded.substring(0, wrkngNameToBeAdded.length - 1);	
+	var wrkngIdArr = wrkngIdToBeAdded.split(",");
+	var wrkngNameArr = wrkngNameToBeAdded.split(",");
+	
+	var wrkngdl = $("#selectedWorkingList");
+		for (var i = 0; i < wrkngIdArr.length; i++)
+		{
+			wrkngNameArr[i] =wrkngNameArr[i].replaceAll("@", ",");
+		    wrkngdl.append("<option value='" + wrkngIdArr[i]+ "'>" +  wrkngNameArr[i] + "</option>");
+	   	}
+   	}
+}
+//UnderLined Condition
+function loadSelectedUnderLinedConditionList()
+{
+	if(${underlinedconditionIdSet}.length > 0)
+	{
+	var underconditionIdToBeAdded = ('${underlinedconditionIdSet}');
+	var underconditionNameToBeAdded = ('${underlinedNameSet}');
+	underconditionIdToBeAdded = underconditionIdToBeAdded.substr(1);
+	underconditionIdToBeAdded = underconditionIdToBeAdded.substring(0, underconditionIdToBeAdded.length - 1);	
+	underconditionNameToBeAdded = underconditionNameToBeAdded.substr(1);
+	underconditionNameToBeAdded = underconditionNameToBeAdded.substring(0, underconditionNameToBeAdded.length - 1);	
+	var uIdArr = underconditionIdToBeAdded.split(",");
+	var uNameArr = underconditionNameToBeAdded.split(",");
+	var udl = $("#selectedUnderLinedList");
+		for (var i = 0; i < uIdArr.length; i++)
+		{      
+			 uNameArr[i] = uNameArr[i].replaceAll("@", ",");
+			 
+		     udl.append("<option value='" + uIdArr[i]+ "'>" +  uNameArr[i] + "</option>");
+	   	}
+   	}
+}
 	loadSelectedSymptomList();
 	loadSelectedExaminationList();
 	loadSelectedDiagnosisList();
-	
+	//signs
+	loadSelectedSignsList();
+	//differential diagnosis
+	loadSelectedDifferentialDiagnosisList();
+	//Working diagnosis
+	loadSelectedWorkingDiagnosisList();
+	//UnderLined Condition
+	loadSelectedUnderLinedConditionList();
 	   
 });
 </script>
@@ -561,11 +852,15 @@ getQuestion();
 //Examination
 function removeExamination(){
 var selLen = selectedExaminationList.length;
+
 var i;
 for(i=selLen-1; i>=0; i--){
 var dat1=selectedExaminationList[i].value;
+
 var splts=dat1.toString();
+
 var spltswhs="#".concat(splts); 
+
 $('spltswhs').remove();
 }
 getQuest();
@@ -602,13 +897,43 @@ for(i=selSymLen-1; i>=0; i--){
 var sym=selectedSymptomList[i].text;
 jQuery("#printableSymptom").append("<span style='margin:5px;'>" + sym + "<br/>" + "</span>");
 }
-
-
+var selExmLen = selectedExaminationList.length;
+for(i=selExmLen-1; i>=0; i--){
+var exm=selectedExaminationList[i].text;
+jQuery("#printableExamination").append("<span style='margin:5px;'>" + exm + "<br/>" + "</span>");
+}
+//Signs
+var selSignsLen = selectedSignsList.length;
+for(i=selSignsLen-1; i>=0; i--){
+var signed=selectedSignsList[i].text;
+jQuery("#printableSign").append("<span style='margin:5px;'>" + signed + "<br/>" + "</span>");
+}
+//Diagnosis
 var selDiagLen = selectedDiagnosisList.length;
 for(i=selDiagLen-1; i>=0; i--){
 var diag=selectedDiagnosisList[i].text;
 jQuery("#printableProvisionalDiagnosis").append("<span style='margin:5px;'>" + diag + "<br/>" + "</span>");
 }
+//Differential Diagnosis
+var selDifferentialLen = selectedDifferentialList.length;
+for(i=selDifferentialLen -1; i>=0; i--){
+var diff=selectedDifferentialList[i].text;
+jQuery("#printableDifferential").append("<span style='margin:5px;'>" + diff + "<br/>" + "</span>");
+}
+
+//Working Diagnosis
+var selWorkingLen = selectedWorkingList.length;
+for(i=selWorkingLen -1; i>=0; i--){
+var wrkng=selectedWorkingList[i].text;
+jQuery("#printableWorking").append("<span style='margin:5px;'>" + wrkng + "<br/>" + "</span>");
+}
+//UnderLined Condition
+var selUnderLinedConditionLen = selectedUnderLinedList.length;
+for(i=selUnderLinedConditionLen-1; i>=0; i--){
+var underLinedCondition=selectedUnderLinedList[i].text;
+jQuery("#printableUnderLinedCondition").append("<span style='margin:5px;'>" + underLinedCondition + "<br/>" + "</span>");
+}
+
 
 var selProLen = selectedProcedureList.length;
 for(i=selProLen-1; i>=0; i--){
@@ -695,24 +1020,29 @@ if(procedure==null || procedure==""){
 
 }
 
+
+
 return true;
+
 }
 </script>
 
 <b class="boxHeader">Clinical Notes</b>
 <form class="box" method="post" action="opdEntry.htm" id="opdEntryForm" onsubmit="return validateOnSubmit();">
-
+ 
+	
 	<input type="hidden" name="patientId" value="${patientId }" /> <input
 		type="hidden" name="opdId" value="${opd.conceptId }" /> <input
 		type="hidden" name="queueId" id="queueId" value="${queueId }" />
 		<input
 		type="hidden" name="opdLogId" id="opdLogId" value="${opdLogId }" />
-
-
+  
+     
 	<div class="container">
-		<div class="floatLeft">
+		<div class="floatLeft"> 
+		<!--  end of floatRight -->
 			<tr>
-				<table cellspacing="5">
+				<table cellspacing="2">
 					<!--  
 		<tr align="right">
 			<td colspan="3"><c:if test="${not empty queueId }">
@@ -736,23 +1066,37 @@ return true;
 					</c:when>
 					</c:choose>
 					
-					<tr>
-						<td colspan="3"><strong>History of Present Illness:</strong>
-							<TEXTAREA  id="history" name="history" size="200" style="width: 1000px; height: 50px" 
-										rows=1 cols=15 class="ui-autocomplete-input ui-widget-content ui-corner-all ac_input"></TEXTAREA>
-										
+						<tr>
+						<td colspan="3"><div id="histry"><strong>HISTORY OF PRESENT ILLNESS</strong></div>
+							</td>
+					</tr>
+	            
+					<tr> 
+					
+						<td colspan="3"><div id="abc"><strong>
+				History of Present Illness</strong><TEXTAREA  id="history" name="history" size="200" style="width: 1000px; height: 50px" 
+										rows=1 cols=15 class="ui-autocomplete-input ui-widget-content ui-corner-all ac_input"></TEXTAREA></div>
+							
+								
 						</td>
+						
 					</tr>
 					
+					<tr>
+						<td colspan="3"><div id="syptom"><strong>SYMPTOM</strong></div>
+							</td>
+					</tr>
 					
 					<tr>
-						<td colspan="3"><strong>Symptom:</strong><em>*</em>
+						<td colspan="5"><div id="xyz"><strong>Symptom:</strong><em>*</em>
 							<input
 							class="ui-autocomplete-input ui-widget-content ui-corner-all"
 							id="symptom" title="${opd.conceptId}" style="width: 460px"
-							name="symptom" /></td>
+							name="symptom" /></div></td>
 					</tr>
+				
 					<tr>
+						
 						<td>
 							<!-- List of all available DataElements -->
 							<div id="divAvailableSymptomList">
@@ -765,7 +1109,7 @@ return true;
 									</c:forEach>
 								</select>
 							</div></td>
-						<td><input type="button" value="&gt;"
+						<td><div id="symp"><input type="button" value="&gt;"
 							class="ui-button ui-widget ui-state-default ui-corner-all"
 							style="width: 50px"
 							onclick="moveSelectedById( 'availableSymptomList', 'selectedSymptomList');getQuestion();" /><br />
@@ -773,7 +1117,7 @@ return true;
 							class="ui-button ui-widget ui-state-default ui-corner-all"
 							style="width: 50px"
 							onclick="moveSelectedById( 'selectedSymptomList', 'availableSymptomList');removeSymptom()" />
-						</td>
+						</div></td>
 						<td>
 							<!-- List of all selected DataElements --> <select
 							id="selectedSymptomList" size="4" style="width: 550px"
@@ -782,18 +1126,24 @@ return true;
 							ondblclick="moveSelectedById( 'selectedSymptomList', 'availableSymptomList' );removeSymptom();">
 						</select></td>
 						<td>
-						<input type="button"
+						<input type="button" id="but"
 									class="ui-button ui-widget ui-state-default ui-corner-all"
 									value="View Question" onclick="viewQuestion();"/>
 							</td>
+							
 					</tr>
+					
 					<!--Examination-->
 					<tr>
-						<td colspan="3"><strong>Physical Examination:</strong><em>*</em>
+						<td colspan="3"><div id="exmntion"><strong>PHYSICAL EXAMINATION</strong></div>
+							</td>
+					</tr>
+					<tr>
+						<td colspan="3"><div id="ex"><strong>Physical Examination:</strong><em>*</em>
 							<input
 							class="ui-autocomplete-input ui-widget-content ui-corner-all"
 							id="examination" title="${opd.conceptId}" style="width: 460px"
-							name="examination" /></td>
+							name="examination" /></div></td>
 					</tr>
 					<tr>
 						<td>
@@ -808,7 +1158,7 @@ return true;
 									</c:forEach>
 								</select>
 							</div></td>
-						<td><input type="button" value="&gt;"
+						<td><div id="exm"><input type="button" value="&gt;"
 							class="ui-button ui-widget ui-state-default ui-corner-all"
 							style="width: 50px"
 							onclick="moveSelectedById( 'availableExaminationList', 'selectedExaminationList');getQuest();" /><br />
@@ -816,7 +1166,7 @@ return true;
 							class="ui-button ui-widget ui-state-default ui-corner-all"
 							style="width: 50px"
 							onclick="moveSelectedById( 'selectedExaminationList', 'availableExaminationList');removeExamination()" />
-						</td>
+						</div></td>
 						<td>
 							<!-- List of all selected DataElements --> <select
 							id="selectedExaminationList" size="4" style="width: 550px"
@@ -825,15 +1175,66 @@ return true;
 							ondblclick="moveSelectedById( 'selectedExaminationList', 'availableExaminationList' );removeExamination();">
 						</select></td>
 						<td>
-						<input type="button"
+						<input type="button" id="buttns"
 									class="ui-button ui-widget ui-state-default ui-corner-all"
 									value="View Question" onclick="viewQuest();"/>
 							</td>
 					</tr>
-					<!--Diagnosis-->
-					
+					<!-- Signs -->
 					<tr>
-					    <td colspan="3">
+						<td colspan="3"><div id="sins"><strong>SIGNS</strong></div>
+							</td>
+					</tr>
+					<tr>
+					   
+							<td colspan="10"><div id="sgn"><strong>Signs:</strong><em>*</em>
+							<input
+							class="ui-autocomplete-input ui-widget-content ui-corner-all"
+							id="signs" title="${opd.conceptId}" style="width: 390px"
+							name="signs" /></div></td>
+					</tr>
+					<tr>
+					
+						<td>
+							<!-- List of all available DataElements -->
+							
+							<div id="divAvailableSignsList">
+								<select size="4" style="width: 550px"
+									id="availableSignsList" name="availableSignsList"
+									multiple="multiple" style="min-width:25em;height:10em"
+									ondblclick="moveSelectedById( 'availableSignsList', 'selectedSignsList');">
+									<c:forEach items="${signsList}" var="si">
+										<option value="${si.id}">${si.name}</option>
+									</c:forEach>
+								</select>
+							</div></td>
+						<td><div id="sn"><input type="button" value="&gt;"
+							class="ui-button ui-widget ui-state-default ui-corner-all"
+							style="width: 50px"
+							onclick="moveSelectedById( 'availableSignsList', 'selectedSignsList');" /><br />
+							<input type="button" value="&lt;"
+							class="ui-button ui-widget ui-state-default ui-corner-all"
+							style="width: 50px"
+							onclick="moveSelectedById( 'selectedSignsList', 'availableSignsList');" />
+						</div></td>
+						<td>
+							<!-- List of all selected DataElements --> <select
+							id="selectedSignsList" size="4" style="width: 550px"
+							name="selectedSignsList" multiple="multiple"
+							style="min-width:25em;height:10em"
+							ondblclick="moveSelectedById( 'selectedSignsList', 'availableSignsList' );">
+						</select></td>
+						
+					</tr>
+					
+					<!--Provisional Diagnosis-->
+					<tr>
+					    <td colspan="3"><div id="dig">
+							<strong>PROVISIONAL DIAGNOSIS</strong></div>
+						</td>
+					</tr>
+					<tr>
+					     <td colspan="3"><div id="diag">
 							<input type="radio" name="radio_dia" value="prov_dia" id="prov_dia"
 								 	onclick="loadSelectedDiagnosisList();"/><strong>Provisional</strong>
 							<input type="radio" name="radio_dia" value="final_dia" id="final_dia"
@@ -842,7 +1243,7 @@ return true;
 							<input
 							class="ui-autocomplete-input ui-widget-content ui-corner-all"
 							id="diagnosis" title="${opd.conceptId}" style="width: 390px"
-							name="diagnosis" /></td>
+							name="diagnosis" /></div> </td>
 					</tr>
 					<tr>
 						<td>
@@ -857,7 +1258,7 @@ return true;
 									</c:forEach>
 								</select>
 							</div></td>
-						<td><input type="button" value="&gt;"
+						<td><div id="dgn"><input type="button" value="&gt;"
 							class="ui-button ui-widget ui-state-default ui-corner-all"
 							style="width: 50px"
 							onclick="moveSelectedById( 'availableDiagnosisList', 'selectedDiagnosisList');" /><br />
@@ -875,7 +1276,7 @@ return true;
 				style="width: 50px"
 				onclick="moveAllById( 'selectedDiagnosisList', 'availableDiagnosisList' );" />
 				 -->
-						</td>
+						</div></td>
 						<td>
 							<!-- List of all selected DataElements --> <select
 							id="selectedDiagnosisList" size="4" style="width: 550px"
@@ -884,66 +1285,154 @@ return true;
 							ondblclick="moveSelectedById( 'selectedDiagnosisList', 'availableDiagnosisList' );">
 						</select></td>
 					</tr>
-				</table>
-				<table cellspacing="5">
+					
+					<!-- Differential Diagnosis -->
 					<tr>
-						<td colspan="3">
-							<div class="ui-widget">
-								<strong>Post for Procedure:</strong> <input
-									class="ui-autocomplete-input ui-widget-content ui-corner-all"
-									title="${opd.conceptId }" id="procedure" style="width: 420px"
-									name="procedure" />
-							</div></td>
+					    <td colspan="3"><div id="difrntial">
+							<strong>DIFFERENTIAL DIAGNOSIS</strong></div>
+						</td>
+					</tr>
+						<tr>
+					   
+							<td colspan="3"><div id="diff"><strong>Differential Diagnosis:</strong><em>*</em>
+							<input
+							class="ui-autocomplete-input ui-widget-content ui-corner-all"
+							id="differentialdiagnosis" title="${opd.conceptId}" style="width: 390px"
+							name="differentialdiagnosis" /></div></td>
 					</tr>
 					<tr>
 						<td>
 							<!-- List of all available DataElements -->
-							<div id="divAvailableProcedureList">
+							<div id="divAvailableDifferentialDiagnosisList">
 								<select size="4" style="width: 550px"
-									id="availableProcedureList" name="availableProcedureList"
-									multiple="multiple" style="min-width:25em;height:5em"
-									ondblclick="moveSelectedById( 'availableProcedureList', 'selectedProcedureList');">
-									<c:forEach items="${listProcedures}" var="procedure">
-										<option value="${procedure.conceptId}">${procedure.name}</option>
+									id="availableDifferentialDiagnosisList" name="availableDifferentialDiagnosisList"
+									multiple="multiple" style="min-width:25em;height:10em"
+									ondblclick="moveSelectedById( 'availableDifferentialDiagnosisList', 'selectedDifferentialList');">
+									<c:forEach items="${differentialList}" var="differential">
+										<option value="${differential.id}">${differential.name}</option>
 									</c:forEach>
 								</select>
 							</div></td>
-						<td><input type="button"
+						<td><div id="dfnbut"><input type="button" value="&gt;"
 							class="ui-button ui-widget ui-state-default ui-corner-all"
-							value="&gt;" style="width: 50px"
-							onclick="moveSelectedById( 'availableProcedureList', 'selectedProcedureList');" /><br />
-							<input type="button"
+							style="width: 50px"
+							onclick="moveSelectedById( 'availableDifferentialDiagnosisList', 'selectedDifferentialList');" /><br />
+							<input type="button" value="&lt;"
 							class="ui-button ui-widget ui-state-default ui-corner-all"
-							value="&lt;" style="width: 50px"
-							onclick="moveSelectedById( 'selectedProcedureList', 'availableProcedureList');" />
-							<!--  
-				<input type="button"
-				class="ui-button ui-widget ui-state-default ui-corner-all"
-				value="&gt;&gt;" style="width: 50px"
-				onclick="moveAllById( 'availableProcedureList', 'selectedProcedureList' );" /><br />
-				<input type="button"
-				class="ui-button ui-widget ui-state-default ui-corner-all"
-				value="&lt;&lt;" style="width: 50px"
-				onclick="moveAllById( 'selectedProcedureList', 'availableProcedureList' );" />
-				-->
-						</td>
+							style="width: 50px"
+							onclick="moveSelectedById( 'selectedDifferentialList', 'availableDifferentialDiagnosisList');" />
+						</div></td>
 						<td>
-							<!-- List of all selected DataElements --> <select size="4"
-							style="width: 550px" id="selectedProcedureList"
-							name="selectedProcedureList" multiple="multiple"
-							style="min-width:25em;height:5em"
-							ondblclick="moveSelectedById( 'selectedProcedureList', 'availableProcedureList' );">
+							<!-- List of all selected DataElements --> <select
+							id="selectedDifferentialList" size="4" style="width: 550px"
+							name="selectedDifferentialList" multiple="multiple"
+							style="min-width:25em;height:10em"
+							ondblclick="moveSelectedById( 'selectedDifferentialList', 'availableDifferentialDiagnosisList' );">
 						</select></td>
-						<td>
-						<input type="button"
-									class="ui-button ui-widget ui-state-default ui-corner-all"
-									value="Schedule" onclick="showSchedule();" />
-							</td>
 					</tr>
+					
+							<!--Working Diagnosis -->
+							
+							<tr>
+					    <td colspan="3"><div id="wrking">
+							<strong>WORKING DIAGNOSIS</strong></div>
+						</td>
+					</tr>
+						<tr>
+					   
+							<td colspan="3"><div id="wrknd"><strong>Working Diagnosis:</strong><em>*</em>
+							<input
+							class="ui-autocomplete-input ui-widget-content ui-corner-all"
+							id="workingdiagnosis" title="${opd.conceptId}" style="width: 390px"
+							name="workingdiagnosis" /></div></td>
+					</tr>
+					<tr>
+						<td>
+							<!-- List of all available DataElements -->
+							<div id="divAvailableWorkingDiagnosisList">
+								<select size="4" style="width: 550px"
+									id="availableWorkingDiagnosisList" name="availableWorkingDiagnosisList"
+									multiple="multiple" style="min-width:25em;height:10em"
+									ondblclick="moveSelectedById( 'availableWorkingDiagnosisList', 'selectedWorkingList');">
+									<c:forEach items="${workingList}" var="working">
+										<option value="${working.id}">${working.name}</option>
+									</c:forEach>
+								</select>
+							</div></td>
+						<td><div id="wrkngdig"><input type="button" value="&gt;"
+							class="ui-button ui-widget ui-state-default ui-corner-all"
+							style="width: 50px"
+							onclick="moveSelectedById( 'availableWorkingDiagnosisList', 'selectedWorkingList');" /><br />
+							<input type="button" value="&lt;"
+							class="ui-button ui-widget ui-state-default ui-corner-all"
+							style="width: 50px"
+							onclick="moveSelectedById( 'selectedWorkingList', 'availableWorkingDiagnosisList');" />
+						</div></td>
+						<td>
+							<!-- List of all selected DataElements --> <select
+							id="selectedWorkingList" size="4" style="width: 550px"
+							name="selectedWorkingList" multiple="multiple"
+							style="min-width:25em;height:10em"
+							ondblclick="moveSelectedById( 'selectedWorkingList', 'availableWorkingDiagnosisList' );">
+						</select></td>
+					</tr>
+					<!-- Underlying Condition -->
+					<tr>
+					    <td colspan="3"><div id="underlned">
+							<strong>UNDERLINED CONDITION</strong></div>
+						</td>
+					<tr>
+					   
+							<td colspan="3"><div id="undr"><strong>Underlined Condition:</strong><em>*</em>
+							<input
+							class="ui-autocomplete-input ui-widget-content ui-corner-all"
+							id="underlinedcondition" title="${opd.conceptId}" style="width: 390px"
+							name="underlinedcondition" /></div></td>
+					</tr>
+					<tr>
+						<td>
+							<!-- List of all available DataElements -->
+							<div id="divAvailableUnderLinedConditionList">
+								<select size="4" style="width: 550px"
+									id="availableUnderLinedConditionList" name="availableUnderLinedConditionList"
+									multiple="multiple" style="min-width:25em;height:10em"
+									ondblclick="moveSelectedById( 'availableUnderLinedConditionList', 'selectedUnderLinedList');">
+									<c:forEach items="${underLinedList}" var="underlinecondition">
+										<option value="${underlinecondition.id}">${underlinecondition.name}</option>
+									</c:forEach>
+								</select>
+							</div></td>
+						<td><div id="under"><input type="button" value="&gt;"
+							class="ui-button ui-widget ui-state-default ui-corner-all"
+							style="width: 50px"
+							onclick="moveSelectedById( 'availableUnderLinedConditionList', 'selectedUnderLinedList');" /><br />
+							<input type="button" value="&lt;"
+							class="ui-button ui-widget ui-state-default ui-corner-all"
+							style="width: 50px"
+							onclick="moveSelectedById( 'selectedUnderLinedList', 'availableUnderLinedConditionList');" />
+						</div></td>
+						<td>
+							<!-- List of all selected DataElements --> <select
+							id="selectedUnderLinedList" size="4" style="width: 550px"
+							name="selectedUnderLinedList" multiple="multiple"
+							style="min-width:25em;height:10em"
+							ondblclick="moveSelectedById( 'selectedUnderLinedList', 'availableUnderLinedConditionList' );">
+						</select></td>
+					</tr>
+					
+					
+				</table>
+				<table cellspacing="2">
+
 					<!-- ghanshyam 1-june-2013 New Requirement #1633 User must be able to send investigation orders from dashboard to billing -->
 					<tr>
+					    <td colspan="3"><div id="investgtion">
+							<strong>INVESTIGATION</strong></div>
+						</td>
+					<tr>
+					<tr>
 						<td colspan="3">
-							<div class="ui-widget">
+							<div class="ui-widget" id="invest">
 								<strong>Investigation:</strong> <input
 									class="ui-autocomplete-input ui-widget-content ui-corner-all"
 									title="${opd.conceptId}" id="investigation"
@@ -966,7 +1455,7 @@ return true;
 								</select>
 							</div>
 						</td>
-						<td><input type="button"
+						<td><div id="investing"><input type="button"
 							class="ui-button ui-widget ui-state-default ui-corner-all"
 							value="&gt;" style="width: 50px"
 							onclick="moveSelectedById( 'availableInvestigationList', 'selectedInvestigationList');" /><br />
@@ -983,7 +1472,7 @@ return true;
 				class="ui-button ui-widget ui-state-default ui-corner-all"
 				value="&lt;&lt;" style="width: 50px"
 				onclick="moveAllById( 'selectedInvestigationList', 'availableInvestigationList' );" />
-				-->
+				-->      </div>
 						</td>
 						<td>
 							<!-- List of all selected DataElements --> <select size="4"
@@ -994,16 +1483,91 @@ return true;
 						</select>
 						</td>
 					</tr>
-					<!-- ghanshyam 12-june-2013 New Requirement #1635 User should be able to send pharmacy orders to issue drugs to a patient from dashboard -->
+					</table>
+					<table cellspacing="2">
+					<tr><td><div id="treatment"><strong>TREATMENT</strong></div></td></tr>
+					<tr>
+					    <td colspan="3"><div id="procedre">
+							<strong>PROCEDURE</strong></div>
+						</td>
+					</tr>
 					<tr>
 						<td colspan="3">
-							<div class="ui-widget">
+							<div class="ui-widget" id="pop">
+								<strong>Post for Procedure:</strong> <input
+									class="ui-autocomplete-input ui-widget-content ui-corner-all"
+									title="${opd.conceptId }" id="procedure" style="width: 420px"
+									name="procedure" />
+							</div></td>
+					</tr>
+					<tr>
+						<td>
+						
+							<!-- List of all available DataElements -->
+							<div id="divAvailableProcedureList">
+								<select size="4" style="width: 550px"
+									id="availableProcedureList" name="availableProcedureList"
+									multiple="multiple" style="min-width:25em;height:5em"
+									ondblclick="moveSelectedById( 'availableProcedureList', 'selectedProcedureList');">
+									<c:forEach items="${listProcedures}" var="procedure">
+										<option value="${procedure.conceptId}">${procedure.name}</option>
+									</c:forEach>
+								</select>
+							</div></td>
+						<td><div id="pp"><input type="button" 
+							class="ui-button ui-widget ui-state-default ui-corner-all"
+							value="&gt;" style="width: 50px"
+							onclick="moveSelectedById( 'availableProcedureList', 'selectedProcedureList');" /><br />
+							<input type="button"
+							class="ui-button ui-widget ui-state-default ui-corner-all"
+							value="&lt;" style="width: 50px"
+							onclick="moveSelectedById( 'selectedProcedureList', 'availableProcedureList');" />
+							<!--  
+				<input type="button"
+				class="ui-button ui-widget ui-state-default ui-corner-all"
+				value="&gt;&gt;" style="width: 50px"
+				onclick="moveAllById( 'availableProcedureList', 'selectedProcedureList' );" /><br />
+				<input type="button"
+				class="ui-button ui-widget ui-state-default ui-corner-all"
+				value="&lt;&lt;" style="width: 50px"
+				onclick="moveAllById( 'selectedProcedureList', 'availableProcedureList' );" />
+				-->
+						</div></td>
+						<td>
+							<!-- List of all selected DataElements --> <select size="4"
+							style="width: 550px" id="selectedProcedureList"
+							name="selectedProcedureList" multiple="multiple"
+							style="min-width:25em;height:5em"
+							ondblclick="moveSelectedById( 'selectedProcedureList', 'availableProcedureList' );">
+						</select></td>
+						<td>
+						<input type="button" id="btns"
+									class="ui-button ui-widget ui-state-default ui-corner-all"
+									value="Schedule" onclick="showSchedule();" />
+							</td>
+					</tr> 
+					
+					
+					
+					
+					
+					
+					
+					<!-- ghanshyam 12-june-2013 New Requirement #1635 User should be able to send pharmacy orders to issue drugs to a patient from dashboard -->
+					<tr>
+					    <td colspan="3"><div id="drgs">
+							<strong>DRUGS</strong></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<div class="ui-widget" id="drug">
 								<strong>Drug:</strong>
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="1">
+						<td colspan="1"><div id="dd">
 							<div class="drug-order" id="drugOrder"
 								style="background: #FFFFFF; border: 1px #808080 solid; padding: 0.3em; margin: 0.3em 0em; min-width: 25em; height: 6em;">
 								<table>
@@ -1044,9 +1608,10 @@ return true;
 								</tr>
 								</table>
 							</div>
+							</div>
 						</td>
 
-						<td><div class="add">
+						<td><div class="add" id="add">
 								<input type="button"
 									class="ui-button ui-widget ui-state-default ui-corner-all"
 									value="Add" onClick="addDrugOrder();" />
@@ -1069,31 +1634,57 @@ return true;
 					</tr>
 					<!-- ghanshyam 8-july-2013 New Requirement #1963 Redesign patient dashboard -->
 					<tr>
-						<td colspan="3"><strong>Other Instructions:</strong> <input
-							type="text" id="note" name="note" size="200"
-							style="width: 1035px; height: 50px"
-							class="ui-autocomplete-input ui-widget-content ui-corner-all ac_input" />
+					    <td colspan="3"><div id="othrins">
+							<strong>OTHER INSTRUCTIONS</strong></div>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3">Internal Referral: <select
+						<td colspan="3"><div id="other"><strong>Other Instructions:</strong> <input
+							type="text" id="note" name="note" size="200"
+							style="width: 1035px; height: 50px"
+							class="ui-autocomplete-input ui-widget-content ui-corner-all ac_input" /></div>
+						</td>
+					</tr>
+					</table>
+					<table cellspacing="2">
+					<tr>
+					    <td colspan="3"><div id="intrnal">
+							<strong>INTERNAL REFERRAL</strong></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3"><div id="interref">Internal Referral: <select
 							id="internalReferral" name="internalReferral">
 								<option value="">--Select--</option>
-								<c:forEach items="${listInternalReferral}"
-									var="internalReferral">
+								<c:forEach items="${listInternalReferral}"var="internalReferral">
 									<option value="${internalReferral.answerConcept.name}">${internalReferral.answerConcept.name}</option>
 								</c:forEach>
-						</select> External Referral: <select id="externalReferral"
+						</select></div>
+						</td>
+						</tr>
+						<tr>
+					    <td colspan="3"><div id="extrnal">
+							<strong>EXTERNAL REFERRAL</strong></div>
+						</td>
+					</tr>
+						<tr>
+						<td colspan="3"><div id="externalref"> External Referral:
+						<select id="externalReferral"
 							name="externalReferral">
 								<option value="">--Select--</option>
 								<c:forEach items="${listExternalReferral}"
 									var="externalReferral">
 									<option value="${externalReferral.answerConcept.name}">${externalReferral.answerConcept.name}</option>
 								</c:forEach>
-						</select></td>
+						</select></div></td>
 					</tr>
 					<tr>
-						<td colspan="3"><strong>OPD Visit Outcome:</strong><em>*</em>
+					    <td colspan="3"><div id="outcum">
+							<strong>OUTCOME</strong></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3"><div id="outcome"><strong>OPD Visit Outcome:</strong><em>*</em></div>
 						</td>
 					</tr>
 					<tr>
@@ -1181,16 +1772,20 @@ return true;
 					</tr>
 				</table>
 			</tr>
-		</div> <!--  end of floatLeft -->
+		 <!--  end of floatLeft -->
 
+	
+		</div>
 		<div id="triageDiv" class="floatRight">
+		<label><b> VITALS STATISTICS</b></label></div>
 		
-		<label><b>Current Vitals Details</b></label>
+		<div id="current" class="floatRight">
+		<label><b class="boxHeader">Current Vitals Details</b></label>
 		<table>
 					<tr>
 						<td><br></td>
 					</tr>
-					<tr>
+					
 					<c:choose>
 					<c:when test="${opdPatientQueue.triageDataId==null}">
 					<tr>
@@ -1249,8 +1844,8 @@ return true;
 				
 					</c:choose>
 				
-				
-			</tr>
+			
+			
 					<tr>
 						<td>MUA Circumference(cm)</td>
 						<td><input type="text" id="mua" name="mua" size=11"
@@ -1335,9 +1930,10 @@ return true;
 						<option value="Not Known">Not Known</option>
 				</select></td>
 					</tr>
+					
 		</table>
-		</div><!--  end of floatRight -->
 		
+		</div>
 	</div>
 <div id="questionDiv" style="visibility:hidden;">
 <table id="tableQuestion">
@@ -1403,7 +1999,12 @@ return true;
 <table class="box">
 <tr><td><strong>History of Present Illness:</strong></td><td><div id="printableHistoryOfPresentIllness"></div></td></tr>
 <tr><td><strong>Symptom:</strong></td><td><div id="printableSymptom"></div></td></tr>
+<tr><td><strong>Examination:</strong></td><td><div id="printableExamination"></div></td></tr>
+<tr><td><strong>Signs:</strong></td><td><div id="printableSign"></div></td></tr>
 <tr><td><strong>Provisional Diagnosis:</strong></td><td><div id="printableProvisionalDiagnosis"></div></td></tr>
+<tr><td><strong>Differential Diagnosis:</strong></td><td><div id="printableDifferential"></div></td></tr>
+<tr><td><strong>Working Diagnosis:</strong></td><td><div id="printableWorking"></div></td></tr>
+<tr><td><strong>Underline Condition:</strong></td><td><div id="printableUnderLinedCondition"></div></td></tr>
 <tr><td><strong>Procedure:</strong></td><td><div id="printablePostForProcedure"></div></td></tr>
 <tr><td><strong>Investigation:</strong></td><td><div id="printableInvestigation"></div></td></tr>
 </table>
@@ -1430,4 +2031,5 @@ return true;
 	</tr>
 </table>
 </div>
+
 </form>

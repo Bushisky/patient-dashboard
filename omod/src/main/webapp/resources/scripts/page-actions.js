@@ -138,6 +138,111 @@ var CHECK =
 						});
 					
 					
+					//Underlined condition
+					jQuery("#underlinedcondition").autocomplete('autoCompleteUnderLinedCondition.htm', {
+						delay:1000,
+						scroll: true,
+						 parse: function(xml){
+				                var results = [];
+				                $(xml).find('item').each(function() {
+				                    var text = $.trim($(this).find('text').text());
+				                    var value = $.trim($(this).find('value').text());
+				                    results[results.length] = { 'data': { text: text, value: value },
+				                        'result': text, 'value': value
+				                    };
+				                });
+				                return results;
+
+						 },
+						formatItem: function(data) {
+							  return data.text;
+						},
+						formatResult: function(data) {
+						      return data.text;
+						}
+						  
+						}).result(function(event, item) {
+							DASHBOARD.onChangeDiagnosis('underlinedcondition',item.value, item.text);
+						});
+					//Signs
+					jQuery("#signs").autocomplete('autoCompleteSigns.htm', {
+						delay:1000,
+						scroll: true,
+						 parse: function(xml){
+				                var results = [];
+				                $(xml).find('item').each(function() {
+				                    var text = $.trim($(this).find('text').text());
+				                    var value = $.trim($(this).find('value').text());
+				                    results[results.length] = { 'data': { text: text, value: value },
+				                        'result': text, 'value': value
+				                    };
+				                });
+				                return results;
+
+						 },
+						formatItem: function(data) {
+							  return data.text;
+						},
+						formatResult: function(data) {
+						      return data.text;
+						}
+						  
+						}).result(function(event, item) {
+							DASHBOARD.onChangeDiagnosis('signs',item.value, item.text);
+						});
+					//Differential Diagnosis
+					jQuery("#differentialdiagnosis").autocomplete('autoCompleteDifferentialDiagnosis.htm', {
+						delay:1000,
+						scroll: true,
+						 parse: function(xml){
+				                var results = [];
+				                $(xml).find('item').each(function() {
+				                    var text = $.trim($(this).find('text').text());
+				                    var value = $.trim($(this).find('value').text());
+				                    results[results.length] = { 'data': { text: text, value: value },
+				                        'result': text, 'value': value
+				                    };
+				                });
+				                return results;
+
+						 },
+						formatItem: function(data) {
+							  return data.text;
+						},
+						formatResult: function(data) {
+						      return data.text;
+						}
+						  
+						}).result(function(event, item) {
+							DASHBOARD.onChangeDiagnosis('differentialdiagnosis',item.value, item.text);
+						});
+					//Working Diagnosis
+					jQuery("#workingdiagnosis").autocomplete('autoCompleteWorkingDiagnosis.htm', {
+						delay:1000,
+						scroll: true,
+						 parse: function(xml){
+				                var results = [];
+				                $(xml).find('item').each(function() {
+				                    var text = $.trim($(this).find('text').text());
+				                    var value = $.trim($(this).find('value').text());
+				                    results[results.length] = { 'data': { text: text, value: value },
+				                        'result': text, 'value': value
+				                    };
+				                });
+				                return results;
+
+						 },
+						formatItem: function(data) {
+							  return data.text;
+						},
+						formatResult: function(data) {
+						      return data.text;
+						}
+						  
+						}).result(function(event, item) {
+							DASHBOARD.onChangeDiagnosis('workingdiagnosis',item.value, item.text);
+						});
+					//procedure
 					jQuery("#procedure").autocomplete('autoCompleteProcedure.htm', {
 						delay:1000,
 						scroll: true,
@@ -239,6 +344,10 @@ var CHECK =
 									"selectedSymptomList" : { required : true},
 									"selectedDiagnosisList" : { required : true},
 									 "selectedExaminationList":{required :true },
+									 "selectedUnderLinedList":{required :true},
+									 "selectedSignsList":{required :true},
+									 "selectedDifferentialList":{required :true},
+									 "selectedWorkingList":{required :true},
 									"radio_f" : { required : true},
 									"dateFollowUp" : {
 							            required: {
@@ -369,7 +478,34 @@ var CHECK =
 			}).result(function(event, item) {
 				DASHBOARD.onChangeDiagnosis('diagnosis',item.value, item.text);
 			});
-		
+		//Underlined condition
+		jQuery("#underlinedcondition").autocomplete('autoCompleteUnderLinedCondition.htm', {
+			delay:1000,
+			scroll: true,
+			 parse: function(xml){
+				 
+	                var results = [];
+	                $(xml).find('item').each(function() {
+	                    var text = $.trim($(this).find('text').text());
+	                    var value = $.trim($(this).find('value').text());
+	                    results[results.length] = { 'data': { text: text, value: value },
+	                        'result': text, 'value': value
+	                    };
+	                });
+	                return results;
+
+			 },
+			formatItem: function(data) {
+				  return data.text;
+			},
+			formatResult: function(data) {
+			      return data.text;
+			}
+			  
+			}).result(function(event, item) {
+				
+				DASHBOARD.onChangeDiagnosis('underlinedcondition',item.value, item.text);
+			});
 		
 		jQuery("#procedure").autocomplete('autoCompleteProcedure.htm', {
 			delay:1000,

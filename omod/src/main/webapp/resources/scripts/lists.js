@@ -22,7 +22,9 @@ var pl;
 
 function addValue( theSel, theText, theValue ) {
     var newOpt = new Option( theText, theValue );
+   
     var selLength = theSel.length;
+   
     theSel.options[ selLength ] = newOpt;
 }
 
@@ -42,6 +44,7 @@ function deleteValue( theSel, theIndex ) {
 function moveSelectedById( fromListId, targetListId ) {
 
     var fromList = document.getElementById( fromListId );
+    
     var targetList = document.getElementById( targetListId );
     pl=targetListId;
     moveSelected( fromList, targetList );
@@ -81,7 +84,7 @@ function moveSelected( fromList, targetList ) {
             }
         }
 
-        for(i=selectedCount-1; i>=0; i--) {
+       for(i=selectedCount-1; i>=0; i--) {
             addValue(targetList, selectedText[i], selectedValues[i]);
         }
 

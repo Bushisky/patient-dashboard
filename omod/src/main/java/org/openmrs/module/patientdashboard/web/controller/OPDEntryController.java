@@ -46,6 +46,7 @@ import org.openmrs.EncounterType;
 import org.openmrs.GlobalProperty;
 import org.openmrs.Location;
 import org.openmrs.Obs;
+import org.openmrs.Order;
 import org.openmrs.Patient;
 import org.openmrs.PersonAttribute;
 import org.openmrs.PersonAttributeType;
@@ -142,6 +143,7 @@ public class OPDEntryController {
 		 */
 		List<Concept> diagnosisList = patientDashboardService
 				.listByDepartmentByWard(opdId, DepartmentConcept.TYPES[0]);
+		
 		if (CollectionUtils.isNotEmpty(diagnosisList)) {
 			Collections.sort(diagnosisList, new ConceptComparator());
 		}
@@ -173,6 +175,7 @@ public class OPDEntryController {
         //Examination 
 		List<Concept> examinationList = patientDashboardService
 				.listByDepartmentByWard(opdId, DepartmentConcept.TYPES[4]);
+		
 		if (CollectionUtils.isNotEmpty( examinationList )) {
 			Collections.sort( examinationList , new ConceptComparator());
 		}
@@ -182,6 +185,46 @@ public class OPDEntryController {
 		List<Concept> drugFrequencyConcept = inventoryCommonService
 				.getDrugFrequency();
 		model.addAttribute("drugFrequencyList", drugFrequencyConcept);
+		
+		//UnderLined Condition
+		List<Concept> underLinedList = patientDashboardService
+				.listByDepartmentByWard(opdId, DepartmentConcept.TYPES[5]);
+		
+		if (CollectionUtils.isNotEmpty(underLinedList)) {
+			Collections.sort(underLinedList, new ConceptComparator());
+		
+		}
+		model.addAttribute("underLinedList", underLinedList);
+		
+		// signs
+		List<Concept> signsList= patientDashboardService
+						.listByDepartmentByWard(opdId, DepartmentConcept.TYPES[6]);
+				
+		if (CollectionUtils.isNotEmpty(signsList)) {
+					Collections.sort(signsList, new ConceptComparator());
+				
+		}
+		model.addAttribute("signsList", signsList);
+		//Differential diagnosis
+		List<Concept> differentialList= patientDashboardService
+						.listByDepartmentByWard(opdId, DepartmentConcept.TYPES[7]);
+				
+		if (CollectionUtils.isNotEmpty(differentialList)) {
+					Collections.sort(differentialList, new ConceptComparator());
+				
+		}
+		model.addAttribute("differentialList", differentialList);
+				
+		//working diagnosis
+		List<Concept> workingList= patientDashboardService
+						.listByDepartmentByWard(opdId, DepartmentConcept.TYPES[8]);
+				
+		if (CollectionUtils.isNotEmpty( workingList)) {
+					Collections.sort( workingList, new ConceptComparator());
+				
+		}
+		model.addAttribute(" workingList",  workingList);
+		
 
 		model.addAttribute("opd", opdConcept);
 	
@@ -281,14 +324,19 @@ public class OPDEntryController {
 		}
    		Patient p = new Patient(patientId);
 		Integer personId = p.getPersonId();
-		
+		Encounter enc= queueService.getLastOPDEncounter(patient);
 		List<Obs> diagnosis= queueService.getAllDiagnosis(personId);
 		Set<Concept> diagnosisIdSet = new LinkedHashSet<Concept>();
 		Set<ConceptName> diagnosisNameSet = new LinkedHashSet<ConceptName>();
 		 
 		for(Obs diagnos:diagnosis){
-			diagnosisIdSet.add(diagnos.getValueCoded());
-			diagnosisNameSet.add(diagnos.getValueCoded().getName());
+			if(diagnos.getEncounter().getId().equals(enc.getEncounterId()))
+			{
+				
+				diagnosisIdSet.add(diagnos.getValueCoded());
+				diagnosisNameSet.add(diagnos.getValueCoded().getName());
+			}
+			
 		 }
 		Set<String> diaNameSet = new LinkedHashSet<String>();
 		Iterator itr = diagnosisNameSet.iterator();
@@ -296,13 +344,18 @@ public class OPDEntryController {
 		{
 			diaNameSet.add((itr.next().toString()).replaceAll(",", "@"));
 		}
-		
+		//Symptom
 		List<Obs> symptom= queueService.getAllSymptom(personId);
 		Set<Concept> symptomIdSet = new LinkedHashSet<Concept>();
 		Set<ConceptName> symptomNameSet = new LinkedHashSet<ConceptName>();
 		for(Obs symp:symptom){
-			 symptomIdSet.add(symp.getValueCoded());
-			 symptomNameSet.add(symp.getValueCoded().getName());
+			if(symp.getEncounter().getId().equals(enc.getEncounterId()))
+			{
+				
+				symptomIdSet.add(symp.getValueCoded());
+				 symptomNameSet.add(symp.getValueCoded().getName());
+			}
+			 
 		}
 		Set<String> symNameSet = new LinkedHashSet<String>();
 		Iterator itr1 = symptomNameSet.iterator();
@@ -315,8 +368,13 @@ public class OPDEntryController {
 		Set<Concept> examinationIdSet = new LinkedHashSet<Concept>();
 		Set<ConceptName> examinationNameSet = new LinkedHashSet<ConceptName>();
 		for(Obs examp:examination){
-			examinationIdSet.add(examp.getValueCoded());
-			 examinationNameSet.add(examp.getValueCoded().getName());
+			if(examp.getEncounter().getId().equals(enc.getEncounterId()))
+			{
+				
+				examinationIdSet.add(examp.getValueCoded());
+				 examinationNameSet.add(examp.getValueCoded().getName());
+			}
+			
 		}
 		Set<String> exmNameSet = new LinkedHashSet<String>();
 		Iterator i = examinationNameSet.iterator();
@@ -324,12 +382,120 @@ public class OPDEntryController {
 		{
 			exmNameSet.add((i.next().toString()).replaceAll(",", "@"));
 		}
+		
+		
+		//Signs
+		List<Obs> signs= queueService.getAllSigns(personId);
+		Set<Concept> signsIdSet = new LinkedHashSet<Concept>();
+		Set<ConceptName> signsNameSet = new LinkedHashSet<ConceptName>();
+		 
+		for(Obs sign:signs){
+			
+			if(sign.getEncounter().getId().equals(enc.getEncounterId()))
+			{
+				
+				signsIdSet.add(sign.getValueCoded());
+				signsNameSet.add(sign.getValueCoded().getName());
+			}
+			
+		 }
+		Set<String>signedNameSet = new LinkedHashSet<String>();
+		Iterator sn = signsNameSet.iterator();
+		while(sn.hasNext())
+		{
+			signedNameSet.add((sn.next().toString()).replaceAll(",", "@"));
+		}
+		
+		
+		//Differential diagnosis
+		List<Obs> differentialdiagnosis= queueService.getAllDifferentialDiagnosis(personId);
+		Set<Concept> differentialIdSet = new LinkedHashSet<Concept>();
+		Set<ConceptName> differentialNameSet = new LinkedHashSet<ConceptName>();
+		 
+		for(Obs differential:differentialdiagnosis){
+			
+			if(differential.getEncounter().getId().equals(enc.getEncounterId()))
+			{
+				
+				differentialIdSet.add(differential.getValueCoded());
+				differentialNameSet.add(differential.getValueCoded().getName());
+			}
+			
+		 }
+		Set<String>differentialedNameSet = new LinkedHashSet<String>();
+		Iterator dn= differentialNameSet.iterator();
+		while(dn.hasNext())
+		{
+			 differentialedNameSet.add((dn.next().toString()).replaceAll(",", "@"));
+		}
+		
+		
+		//Working Diagnosis
+		List<Obs> workingdiagnosis= queueService.getAllWorkingDiagnosis(personId);
+		Set<Concept> workingIdSet = new LinkedHashSet<Concept>();
+		Set<ConceptName> workingNameSet = new LinkedHashSet<ConceptName>();
+		 
+		for(Obs workin:workingdiagnosis){
+			
+			if(workin.getEncounter().getId().equals(enc.getEncounterId()))
+			{
+				
+				workingIdSet.add(workin.getValueCoded());
+				workingNameSet.add(workin.getValueCoded().getName());
+			}
+			
+		 }
+		Set<String>workinedNameSet = new LinkedHashSet<String>();
+		Iterator wn = workingNameSet.iterator();
+		while(wn.hasNext())
+		{
+			workinedNameSet.add((wn.next().toString()).replaceAll(",", "@"));
+		}
+		
+		//UnderLined Condition
+		
+		List<Obs> underlinedcondition= queueService.getAllUnderlinedCondition(personId);
+		Set<Concept> underlinedconditionIdSet = new LinkedHashSet<Concept>();
+		Set<ConceptName> underlinedconditionNameSet = new LinkedHashSet<ConceptName>();
+		 
+		for(Obs underlined:underlinedcondition){
+			
+			if(underlined.getEncounter().getId().equals(enc.getEncounterId()))
+			{
+				
+				underlinedconditionIdSet.add(underlined.getValueCoded());
+				underlinedconditionNameSet.add(underlined.getValueCoded().getName());
+			}
+			
+		 }
+		Set<String>  underlinedNameSet = new LinkedHashSet<String>();
+		Iterator it = underlinedconditionNameSet.iterator();
+		while(it.hasNext())
+		{
+			underlinedNameSet.add((it.next().toString()).replaceAll(",", "@"));
+		}
+		
+		
 		model.addAttribute("diagnosisIdSet", diagnosisIdSet);
 		model.addAttribute("symptomIdSet", symptomIdSet);
 		model.addAttribute("diaNameSet", diaNameSet);
 		model.addAttribute("symNameSet", symNameSet);
 		model.addAttribute("examinationIdSet", examinationIdSet);
 		model.addAttribute("exmNameSet",exmNameSet);
+		//signs
+		model.addAttribute("signsIdSet", signsIdSet);
+		model.addAttribute("signedNameSet",signedNameSet);
+		//differential diagnosis
+		model.addAttribute("differentialIdSet", differentialIdSet);
+		model.addAttribute("differentialedNameSet",differentialedNameSet);
+		//working diagnosis
+		model.addAttribute("workingIdSet", workingIdSet);
+		model.addAttribute("workinedNameSet",workinedNameSet);
+		//Underlined condition
+		model.addAttribute("underlinedconditionIdSet",underlinedconditionIdSet);
+		model.addAttribute("underlinedNameSet", underlinedNameSet);
+		
+		
 		IpdPatientAdmission ipdPatientAdmission=ipds.getIpdPatientAdmissionByPatientId(patient);
 		if (ipdPatientAdmission != null) {
 		model.addAttribute("ipdPatientAdmission", ipdPatientAdmission.getId());
@@ -353,6 +519,7 @@ public class OPDEntryController {
 		PatientService ps = Context.getPatientService();
 		HospitalCoreService hcs = (HospitalCoreService) Context
 				.getService(HospitalCoreService.class);
+		//Order o=new Order();
 		PatientQueueService queueService = Context
 				.getService(PatientQueueService.class);
 		PatientDashboardService patientDashboardService = Context
@@ -436,6 +603,7 @@ public class OPDEntryController {
 		ConceptService conceptService = Context.getConceptService();
 		GlobalProperty gpSymptom = administrationService
 				.getGlobalPropertyObject(PatientDashboardConstants.PROPERTY_SYMPTOM);
+		//Examination
 		GlobalProperty gpExamination = administrationService
 				.getGlobalPropertyObject(PatientDashboardConstants.PROPERTY_EXAMINATION);
 		GlobalProperty gpDiagnosis = administrationService
@@ -450,9 +618,24 @@ public class OPDEntryController {
 				.getGlobalPropertyObject(PatientDashboardConstants.PROPERTY_INTERNAL_REFERRAL);
 		GlobalProperty externalReferral = administrationService
 				.getGlobalPropertyObject(PatientDashboardConstants.PROPERTY_EXTERNAL_REFERRAL);
-
+        //signs
+		GlobalProperty gpSigns = administrationService
+				.getGlobalPropertyObject(PatientDashboardConstants. PROPERTY_SIGNS_CONCEPT);
+		//differential diagnosis
+		GlobalProperty gpDifferentialDiagnosis = administrationService
+				.getGlobalPropertyObject(PatientDashboardConstants.PROPERTY_DIFFERENTIAL_DIAGNOSIS);
+		//working diagnosis
+		GlobalProperty gpWorkingDiagnosis = administrationService
+				.getGlobalPropertyObject(PatientDashboardConstants.PROPERTY_WORKING_DIAGNOSIS);
+		//UnderLined Condition
+		GlobalProperty gpUnderlinedCondition = administrationService
+				.getGlobalPropertyObject(PatientDashboardConstants.PROPERTY_UNDERLINED_CONDITION);
+		
+		
+		
 		Concept cSymptom = conceptService.getConceptByName(gpSymptom
 				.getPropertyValue());
+		//Examination
 		Concept cExamination = conceptService.getConceptByName(gpExamination
 				.getPropertyValue());
 		Concept cDiagnosis = conceptService.getConceptByName(gpDiagnosis
@@ -463,12 +646,28 @@ public class OPDEntryController {
 				.getConceptByName("OTHER INSTRUCTIONS");
 		Concept illnessHistory = conceptService
 				.getConceptByName("History of Present Illness");
-
+		//signs
+		Concept cSigns = conceptService.getConceptByName(gpSigns
+				.getPropertyValue());
+		
+		//differential diagnosis
+		Concept cDifferentialDiagnosis = conceptService.getConceptByName(gpDifferentialDiagnosis
+				.getPropertyValue());
+		
+		//working diagnosis
+		Concept cWorkingDiagnosis= conceptService.getConceptByName(gpWorkingDiagnosis
+				.getPropertyValue());
+		
+		
+		//UnderLined Condition
+		Concept cUnderlinedCondition = conceptService.getConceptByName(gpUnderlinedCondition
+				.getPropertyValue());
+         
 		if (cSymptom == null) {
 			throw new Exception("Symptom concept null");
 		}
 		// symptom
-		System.out.println("post of symptom"+command.getSelectedSymptomList());
+		
 		for (Integer cId : command.getSelectedSymptomList()) {
 			Obs obsSymptom = new Obs();
 			obsSymptom.setObsGroup(obsGroup);
@@ -519,6 +718,81 @@ public class OPDEntryController {
 			obsDiagnosis.setEncounter(encounter);
 			obsDiagnosis.setPatient(patient);
 			encounter.addObs(obsDiagnosis);
+		}
+		//signs
+		if (cSigns == null) {
+			throw new Exception("Signs concept null");
+		}
+		
+          for (Integer cId : command.getSelectedSignsList()) {
+			
+			Obs obsSigned = new Obs();
+			obsSigned.setObsGroup(obsGroup);
+			obsSigned.setConcept(cSigns);
+			
+			obsSigned.setValueCoded(conceptService.getConcept(cId));
+			
+			
+			
+			obsSigned.setCreator(user);
+			obsSigned.setDateCreated(date);
+			obsSigned.setEncounter(encounter);
+			obsSigned.setPatient(patient);
+			encounter.addObs(obsSigned);
+		 }
+		//differential diagnosis
+         if (cDifferentialDiagnosis == null) {
+	             throw new Exception("Differential Diagnosis  concept null");
+         }
+
+            for (Integer cId : command.getSelectedDifferentialList()) 
+            {
+	
+	            Obs obsDifferential = new Obs();
+	            obsDifferential.setObsGroup(obsGroup);
+	            obsDifferential.setConcept(cDifferentialDiagnosis);
+	            obsDifferential.setValueCoded(conceptService.getConcept(cId));
+	            obsDifferential.setCreator(user);
+	           	obsDifferential.setDateCreated(date);
+	           	obsDifferential.setEncounter(encounter);
+	           	obsDifferential.setPatient(patient);
+	           	encounter.addObs(obsDifferential);
+	         }
+
+		 //working diagnosis
+        	if (cWorkingDiagnosis == null) {
+    			throw new Exception("Working Diagnosis concept null");
+    		}
+    		
+    		for (Integer cId : command.getSelectedWorkingList()) {
+    			
+    			Obs obsWorking = new Obs();
+    			obsWorking.setObsGroup(obsGroup);
+    			obsWorking.setConcept(cWorkingDiagnosis);
+    		    obsWorking.setValueCoded(conceptService.getConcept(cId));
+    			obsWorking.setCreator(user);
+    			obsWorking.setDateCreated(date);
+    			obsWorking.setEncounter(encounter);
+    			obsWorking.setPatient(patient);
+    			encounter.addObs(obsWorking);
+    		}
+		
+		//UnderLined Condition
+		if (cUnderlinedCondition == null) {
+			throw new Exception("Underline  concept null");
+		}
+		
+		for (Integer cId : command.getSelectedUnderLinedList()) {
+			
+			Obs obsUnderlined = new Obs();
+			obsUnderlined.setObsGroup(obsGroup);
+			obsUnderlined.setConcept(cUnderlinedCondition);
+		    obsUnderlined.setValueCoded(conceptService.getConcept(cId));
+			obsUnderlined.setCreator(user);
+			obsUnderlined.setDateCreated(date);
+			obsUnderlined.setEncounter(encounter);
+			obsUnderlined.setPatient(patient);
+			encounter.addObs(obsUnderlined);
 		}
 		
 	
@@ -599,7 +873,7 @@ public class OPDEntryController {
 		}
 
 		// internal referral
-		// System.out.println("command.getInternalReferral(): "+command.getInternalReferral());
+		
 		if (command.getInternalReferral() != null
 				&& command.getInternalReferral() != "") {
 			Concept cInternalReferral = conceptService
@@ -659,7 +933,7 @@ public class OPDEntryController {
 		}
 
 		// external referral
-		// System.out.println("command.getExternalReferral(): "+command.getExternalReferral());
+		
 		if (command.getExternalReferral() != null
 				&& command.getExternalReferral() != "") {
 			Concept cExternalReferral = conceptService
@@ -700,7 +974,7 @@ public class OPDEntryController {
 			}
 
 			if (StringUtils.equalsIgnoreCase(command.getRadio_f(), "admit")) {
-				// System.out.println("command.getIpdWard(): "+command.getIpdWard());
+				
 				obsOutcome.setValueCoded(conceptService.getConcept(command
 						.getIpdWard()));
 				// Get ipd ward that patient come .
@@ -709,7 +983,7 @@ public class OPDEntryController {
 				 * conceptService.getConceptByName(administrationService
 				 * .getGlobalProperty
 				 * (PatientDashboardConstants.PROPERTY_IPDWARD));
-				 * System.out.println("ipdWard: "+ipdWard); if( ipdWard == null
+				 * if( ipdWard == null
 				 * ){ throw new Exception("Ipd ward concept =  null"); } Obs
 				 * obsIpdWard = new Obs(); obsIpdWard.setConcept(ipdWard);
 				 * obsIpdWard
@@ -1159,7 +1433,7 @@ public class OPDEntryController {
 		}
 
 		// symptom
-		//System.out.println("Symptom is printed");
+		
 		Symptom symptom = new Symptom();
 		Question question = new Question();
 		Answer answer = new Answer();
@@ -1205,7 +1479,7 @@ public class OPDEntryController {
 										.getConceptId().toString() + ":"
 								+ "textFieldQues");
 						if (!jkl.equals("")) {
-						//	System.out.println("XXXXXX is printed");
+						
 							question.setSymptom(sym);
 							question.setQuestionConcept(conceptAnswer
 									.getAnswerConcept());
@@ -1222,7 +1496,7 @@ public class OPDEntryController {
 			}
 		}
 		//Examination 
-		//System.out.println("Symptom is printed");
+		
 		Examination examination = new Examination();
 		Question quest = new Question();
 		Answer ans= new Answer();

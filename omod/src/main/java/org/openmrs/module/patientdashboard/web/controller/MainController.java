@@ -197,9 +197,9 @@ public class MainController {
 		List<PersonAttribute> pas = hcs.getPersonAttributes(patientId);
 		 for (PersonAttribute pa : pas) {
 			 PersonAttributeType attributeType = pa.getAttributeType(); 
-			 System.out.println("pa.getAttributeType()"+attributeType.getPersonAttributeTypeId() );
+			 
 			 if(attributeType.getPersonAttributeTypeId()==14){
-				 System.out.println("pa value"+pa.getValue());
+				
 				 model.addAttribute("selectedCategory",pa.getValue()); 
 						 
 			 }
@@ -210,10 +210,10 @@ public class MainController {
 		OpdPatientQueueLog opdPatientQueueLog=queueService.getOpdPatientQueueLogByEncounter(enc);
 		model.addAttribute("opdPatientQueueLog", opdPatientQueueLog);
 		Obs ob=queueService.getObservationByPersonConceptAndEncounter(Context.getPersonService().getPerson(patientId),Context.getConceptService().getConcept("VISIT OUTCOME"),enc);
-		System.out.println("ob printed"+ob);
+		
 		if(ob==null)
 		{
-			System.out.println("New Patient");
+			
 			return "module/patientdashboard/main";
 		}else 
 		{
@@ -250,7 +250,7 @@ public class MainController {
 			
 		      model.addAttribute("hasEditPrivilige",hasEditPrivilige);
 		     
-		  if(o.getConcept().getId()!=null)
+		  if(ob.getConcept().getId()!=null)
 		     {
 		    	 model.addAttribute("revisit","revisit");
 		     }
@@ -288,6 +288,18 @@ public class MainController {
 				
 				// Provisional diagnosis
 				insertConcept(conceptService, "N/A", "Misc", PatientDashboardConstants.PROPERTY_PROVISIONAL_DIAGNOSIS);
+				
+				//Underlined condition
+				insertConcept(conceptService, "N/A", "Misc", PatientDashboardConstants.PROPERTY_UNDERLINED_CONDITION);
+				
+				//Sign
+				insertConcept(conceptService, "N/A", "Misc", PatientDashboardConstants. PROPERTY_SIGNS_CONCEPT);
+				
+				//Differential diagnosis
+				insertConcept(conceptService, "N/A", "Misc", PatientDashboardConstants.PROPERTY_DIFFERENTIAL_DIAGNOSIS);
+				
+				//Working diagnosis
+				insertConcept(conceptService, "N/A", "Misc", PatientDashboardConstants.PROPERTY_WORKING_DIAGNOSIS);
 				
 				// Post for procedure
 				insertConcept(conceptService, "N/A", "Misc", PatientDashboardConstants.PROPERTY_POST_FOR_PROCEDURE);

@@ -163,6 +163,40 @@
 			Lab Encounter type name
 		</description>
 	</globalProperty>
+	
+	<!--  UnderLined Condition-->
+	<globalProperty>
+		<property>@MODULE_ID@.underLinedCondition</property>
+		<defaultValue>Underlined Condition</defaultValue>
+		<description>
+			Underlined Condition concept name
+		</description>
+	</globalProperty>
+	<!--  Sign-->
+	<globalProperty>
+		<property>@MODULE_ID@.signsConcept</property>
+		<defaultValue>Signs</defaultValue>
+		<description>
+			Sign  concept name
+		</description>
+	</globalProperty>
+	<!--  Differential Diagnosis-->
+	<globalProperty>
+		<property>@MODULE_ID@.differentialDiagnosis</property>
+		<defaultValue>Differential Diagnosis</defaultValue>
+		<description>
+			Differential Diagnosis concept name
+		</description>
+	</globalProperty>
+	
+	<!--  Working Diagnosis-->
+	<globalProperty>
+		<property>@MODULE_ID@.workingDiagnosis</property>
+		<defaultValue>Working Diagnosis</defaultValue>
+		<description>
+			Working Diagnosis concept name
+		</description>
+	</globalProperty>
 	<!--Required Global Properties -->
 	
 	<!--

@@ -29,6 +29,15 @@ public class Clinical {
 	private String typeOfVisit;
 	private String treatingDoctor;
 	private String diagnosis;
+	//UnderLined Condition
+    private String underlinedCondition;
+    //signs
+    private String signs;
+    //differential diagnosis
+    private String differentialdiagnosis;
+    //working diagnosis
+    private String workingdiagnosis;
+    
 	private String procedures ;
 	private String visitOutcomes;
 	private String linkedVisit;
@@ -80,6 +89,30 @@ public class Clinical {
 	}
 	public void setVisitOutcomes(String visitOutcomes) {
 		this.visitOutcomes = visitOutcomes;
+	}
+	public String getUnderlinedCondition() {
+		return underlinedCondition;
+	}
+	public void setUnderlinedCondition(String underlinedCondition) {
+		this.underlinedCondition = underlinedCondition;
+	}
+	public String getSigns() {
+		return signs;
+	}
+	public void setSigns(String signs) {
+		this.signs = signs;
+	}
+	public String getDifferentialdiagnosis() {
+		return differentialdiagnosis;
+	}
+	public void setDifferentialdiagnosis(String differentialdiagnosis) {
+		this.differentialdiagnosis = differentialdiagnosis;
+	}
+	public String getWorkingdiagnosis() {
+		return workingdiagnosis;
+	}
+	public void setWorkingdiagnosis(String workingdiagnosis) {
+		this.workingdiagnosis = workingdiagnosis;
 	}
 	
 
